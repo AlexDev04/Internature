@@ -1,4 +1,4 @@
-function JAvaScript () {
+function JavaScript () {
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
 
@@ -10,6 +10,26 @@ function JAvaScript () {
         /* Для расшифровки JSON данных воспользуемся методом responseText*/
         let data = JSON.parse(ajax.responseText);
         console.log(data);
+
+        /*Добавляем сортировку по цвету глаз. Заносим кнопку в константу,
+         чтобы в будущем добавить eventListener*/
+        const eyeColorSort = document.getElementById('eyeColorSort')
+        function eyeColorComp(curr, next) {
+            let comp = 0;
+            const currEye = curr.eyeColor.toUpperCase();
+            const nextEye = next.eyeColor.toUpperCase();
+            /* Функция должна возвращать 1, если первый элемент больше второго,
+             и -1, если первый элемент меньше второго,
+             что будет позже применено в методе sort */
+            if (currEye > nextEye)
+                comp = 1;
+            if (currEye < nextEye)
+                comp = -1;
+            return comp;
+        }
+
+        data.sort(eyeColorComp);
+
         data.forEach((el) => {
             /* Создаем строку */
             tr = document.createElement('tr');
