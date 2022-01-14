@@ -6,24 +6,31 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body onload = "JavaScript()">
+<body onload="JavaScript(), checkValidity()">
 
 <!-- Создаем div, чтобы проще было все 'упаковать' -->
     <div>
+        <!-- Таблица будет упакована в HTML формате
+         для удобства редактирования и сортировки -->
         <table>
             <!-- Шапку таблицы пишем вручную -->
             <thead>
+
                 <tr>
                     <!-- создаем будущие кнопки над каждым столбцом,
                      помещаем их в div для будущей стилизации -->
                     <td>
-                        <div id="firstNameSort">Сортировать</div></td>
+                        <div id="firstNameSortBtn" >Сортировать</div>
+                    </td>
                     <td>
-                        <div id="lastNameSort">Сортировать</div></td>
+                        <div id="lastNameSortBtn">Сортировать</div>
+                    </td>
                     <td>
-                        <div id="aboutSort">Сортировать</div></td>
+                        <div id="aboutSortBtn">Сортировать</div>
+                    </td>
                     <td>
-                        <div id="eyeColorSort">Сортировать</div></td>
+                        <div id="eyeSortBtn">Сортировать</div>
+                    </td>
                 </tr>
                 <tr>
                     <!-- пишем иемна колонок -->
@@ -32,6 +39,7 @@
                     <td>Описание</td>
                     <td>Цвет глаз</td>
                 </tr>
+
             </thead>
             <!-- Создаем тело таблицы для вывода туда json
              путем конструирования элементов -->
@@ -41,4 +49,4 @@
     </div>
 </body>
 </html>
-<script src="script.js"></script>
+<script src="script.js" type="text/javascript"></script>
