@@ -8,7 +8,7 @@ function JavaScript() {
      чтобы вручную не писать его для каждого элемента в массиве JSON,
      и не загромождать будущий обработчик событий */
     function showData() {
-        let tr, td;
+
         /* Для расшифровки JSON данных воспользуемся методом responseText*/
         let data = JSON.parse(ajax.responseText);
         console.log(data);
@@ -16,6 +16,8 @@ function JavaScript() {
         /*Добавляем сортировку по цвету глаз. Заносим кнопку в константу,
          чтобы в будущем добавить eventListener*/
         const eyeSortBtn = document.getElementById('eyeSortBtn')
+        /* зададим, что eyeSortBtn на данный момент не нажата нечетный раз,
+         для того, чтобы в будущем реализовать систему четных и нечетных кликов */
         let eyeSortClickedOdd = false;
         /* Убедимся, что DOM прогрузилась перед добавлением eventListener */
         console.log(eyeSortBtn);
@@ -26,11 +28,11 @@ function JavaScript() {
              по кождому второму нажатию */
             if (!eyeSortClickedOdd) {
                 eyeSortClickedOdd = true;
-                console.log('eyeSortBtn нечетный клик');
+                console.log('eyeSortBtn - нечетный клик');
             }
             else {
                 eyeSortClickedOdd = false;
-                console.log('eyeSortBtn Четный клик');
+                console.log('eyeSortBtn - четный клик');
             }
 
 
@@ -61,7 +63,6 @@ function JavaScript() {
                 }
 
             }
-
             /* подставляем функцию в метод sort */
             data.sort(eyeColorComp);
             console.log('eyeColor sort is run')
@@ -74,8 +75,17 @@ function JavaScript() {
 
         /* Сортируем содержимое столбца about */
         const aboutSortBtn = document.getElementById('aboutSortBtn');
+        let aboutSortClickedOdd = false;
         console.log(aboutSortBtn);
         aboutSortBtn.addEventListener('click', function () {
+            if (!aboutSortClickedOdd) {
+                aboutSortClickedOdd = true;
+                console.log('aboutSortBtn - нечетный клик');
+            }
+            else {
+                aboutSortClickedOdd = false;
+                console.log('aboutSortBtn - четный клик');
+            }
             output.innerHTML = '';
             console.log('about sort is running...')
             function aboutComp(curr, next) {
@@ -83,13 +93,21 @@ function JavaScript() {
                 let comp = 0;
                 const currAbout = curr.about.toUpperCase();
                 const nextAbout = next.about.toUpperCase();
-                if (currAbout > nextAbout)
-                    comp = 1;
-                if (currAbout < nextAbout)
-                    comp = -1;
-                return comp;
+                if (aboutSortClickedOdd) {
+                    if (currAbout > nextAbout)
+                        comp = 1;
+                    if (currAbout < nextAbout)
+                        comp = -1;
+                    return comp;
+                }
+                else {
+                    if (currAbout > nextAbout)
+                        comp = -1;
+                    if (currAbout < nextAbout)
+                        comp = 1;
+                    return comp;
+                }
             }
-
             data.sort(aboutComp);
             console.log('about sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
@@ -98,8 +116,17 @@ function JavaScript() {
 
         /* Сортируем содержимое столбца firstName */
         const firstNameSortBtn = document.getElementById('firstNameSortBtn');
+        let firstNameSortClickedOdd = false;
         console.log(firstNameSortBtn);
         firstNameSortBtn.addEventListener('click', function () {
+            if (!firstNameSortClickedOdd) {
+                firstNameSortClickedOdd = true;
+                console.log('firstNameSortBtn - нечетный клик');
+            }
+            else {
+                firstNameSortClickedOdd = false;
+                console.log('firstNameSortBtn - четный клик');
+            }
             output.innerHTML = '';
             console.log('firstName sort is running...')
             function firstNameComp(curr, next) {
@@ -107,11 +134,20 @@ function JavaScript() {
                 let comp = 0;
                 const currFirstName = curr.name.firstName.toUpperCase();
                 const nextFirstName = next.name.firstName.toUpperCase();
-                if (currFirstName > nextFirstName)
-                    comp = 1;
-                if (currFirstName < nextFirstName)
-                    comp = -1;
-                return comp;
+                if (firstNameSortClickedOdd) {
+                    if (currFirstName > nextFirstName)
+                        comp = 1;
+                    if (currFirstName < nextFirstName)
+                        comp = -1;
+                    return comp;
+                }
+                else {
+                    if (currFirstName > nextFirstName)
+                        comp = -1;
+                    if (currFirstName < nextFirstName)
+                        comp = 1;
+                    return comp;
+                }
             }
 
             data.sort(firstNameComp);
@@ -122,8 +158,17 @@ function JavaScript() {
 
         /* Сортируем содержимое столбца lastName */
         const lastNameSortBtn = document.getElementById('lastNameSortBtn');
+        let lastNameSortClickedOdd = false;
         console.log(lastNameSortBtn);
         lastNameSortBtn.addEventListener('click', function () {
+            if (!lastNameSortClickedOdd) {
+                lastNameSortClickedOdd = true;
+                console.log('lastNameSortBtn - нечетный клик');
+            }
+            else {
+                lastNameSortClickedOdd = false;
+                console.log('lastNameSortBtn - четный клик');
+            }
             output.innerHTML = '';
             console.log('lastName sort is running...')
             function lastNameComp(curr, next) {
@@ -131,11 +176,20 @@ function JavaScript() {
                 let comp = 0;
                 const currLastName = curr.name.lastName.toUpperCase();
                 const nextLastName = next.name.lastName.toUpperCase();
-                if (currLastName > nextLastName)
-                    comp = 1;
-                if (currLastName < nextLastName)
-                    comp = -1;
-                return comp;
+                if (lastNameSortClickedOdd) {
+                    if (currLastName > nextLastName)
+                        comp = 1;
+                    if (currLastName < nextLastName)
+                        comp = -1;
+                    return comp;
+                }
+                else {
+                    if (currLastName > nextLastName)
+                        comp = -1;
+                    if (currLastName < nextLastName)
+                        comp = 1;
+                    return comp;
+                }
             }
 
             data.sort(lastNameComp);
@@ -145,6 +199,7 @@ function JavaScript() {
         });
 
         /* Начинаем писать функцию конструирование таблицы */
+        let tr, td;
         function constructData() {
             data.forEach((el) => {
                 /* Создаем строку */
