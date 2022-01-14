@@ -16,10 +16,24 @@ function JavaScript() {
         /*Добавляем сортировку по цвету глаз. Заносим кнопку в константу,
          чтобы в будущем добавить eventListener*/
         const eyeSortBtn = document.getElementById('eyeSortBtn')
+        let eyeSortClickedOdd = false;
         /* Убедимся, что DOM прогрузилась перед добавлением eventListener */
         console.log(eyeSortBtn);
 
         eyeSortBtn.addEventListener('click', function () {
+
+            /* Добавим возможность сортировки в обратном порядке
+             по кождому второму нажатию */
+            if (!eyeSortClickedOdd) {
+                eyeSortClickedOdd = true;
+                console.log('eyeSortBtn нечетный клик');
+            }
+            else {
+                eyeSortClickedOdd = false;
+                console.log('eyeSortBtn Четный клик');
+            }
+
+
             /* Для начала очистим поле таблицы от уже выведенного туда JSON */
             output.innerHTML = '';
             console.log('eyeColor sort is running...')
@@ -31,11 +45,21 @@ function JavaScript() {
                 /* Функция должна возвращать 1, если первый элемент больше второго,
                  и -1, если первый элемент меньше второго,
                  что будет позже применено в методе sort */
-                if (currEye > nextEye)
-                    comp = 1;
-                if (currEye < nextEye)
-                    comp = -1;
-                return comp;
+                if (eyeSortClickedOdd) {
+                    if (currEye > nextEye)
+                        comp = 1;
+                    if (currEye < nextEye)
+                        comp = -1;
+                    return comp;
+                }
+                else {
+                    if (currEye > nextEye)
+                        comp = -1;
+                    if (currEye < nextEye)
+                        comp = 1;
+                    return comp;
+                }
+
             }
 
             /* подставляем функцию в метод sort */
