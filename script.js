@@ -22,9 +22,9 @@ function JavaScript() {
         eyeSortBtn.addEventListener('click', function () {
             /* Для начала очистим поле таблицы от уже выведенного туда JSON */
             output.innerHTML = '';
-            console.log('eyeColorSort is running...')
+            console.log('eyeColor sort is running...')
             function eyeColorComp(curr, next) {
-                console.log ('eyeColorComp is run');
+                console.log ('func eyeColorComp is run');
                 let comp = 0;
                 const currEye = curr.eyeColor.toUpperCase();
                 const nextEye = next.eyeColor.toUpperCase();
@@ -40,27 +40,25 @@ function JavaScript() {
 
             /* подставляем функцию в метод sort */
             data.sort(eyeColorComp);
-            console.log('eyeSort is run')
+            console.log('eyeColor sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
         });
 
 
         /* Повторяем абсолютно то же самое для других элементов */
-        const aboutsortbtn = document.getElementById('aboutSortBtn');
-        console.log(aboutsortbtn);
-        aboutsortbtn.addEventListener('click', function () {
-            /* Для начала очистим поле таблицы от уже выведенного туда JSON */
+
+        /* Сортируем содержимое столбца about */
+        const aboutSortBtn = document.getElementById('aboutSortBtn');
+        console.log(aboutSortBtn);
+        aboutSortBtn.addEventListener('click', function () {
             output.innerHTML = '';
-            console.log('aboutsortbtn is running...')
+            console.log('about sort is running...')
             function aboutComp(curr, next) {
-                console.log ('aboutsortbtn is run');
+                console.log ('func aboutComp is run');
                 let comp = 0;
                 const currAbout = curr.about.toUpperCase();
                 const nextAbout = next.about.toUpperCase();
-                /* Функция должна возвращать 1, если первый элемент больше второго,
-                 и -1, если первый элемент меньше второго,
-                 что будет позже применено в методе sort */
                 if (currAbout > nextAbout)
                     comp = 1;
                 if (currAbout < nextAbout)
@@ -68,9 +66,56 @@ function JavaScript() {
                 return comp;
             }
 
-            /* подставляем функцию в метод sort */
             data.sort(aboutComp);
-            console.log('aboutSort is run')
+            console.log('about sort is run')
+            /* Конструируем элементы с помощью функции, которую опишем далее */
+            constructData();
+        });
+
+        /* Сортируем содержимое столбца firstName */
+        const firstNameSortBtn = document.getElementById('firstNameSortBtn');
+        console.log(firstNameSortBtn);
+        firstNameSortBtn.addEventListener('click', function () {
+            output.innerHTML = '';
+            console.log('firstName sort is running...')
+            function firstNameComp(curr, next) {
+                console.log ('firstNameComp is run');
+                let comp = 0;
+                const currFirstName = curr.name.firstName.toUpperCase();
+                const nextFirstName = next.name.firstName.toUpperCase();
+                if (currFirstName > nextFirstName)
+                    comp = 1;
+                if (currFirstName < nextFirstName)
+                    comp = -1;
+                return comp;
+            }
+
+            data.sort(firstNameComp);
+            console.log('firstName sort is run')
+            /* Конструируем элементы с помощью функции, которую опишем далее */
+            constructData();
+        });
+
+        /* Сортируем содержимое столбца lastName */
+        const lastNameSortBtn = document.getElementById('lastNameSortBtn');
+        console.log(lastNameSortBtn);
+        lastNameSortBtn.addEventListener('click', function () {
+            output.innerHTML = '';
+            console.log('lastName sort is running...')
+            function lastNameComp(curr, next) {
+                console.log ('lastNameComp is run');
+                let comp = 0;
+                const currLastName = curr.name.lastName.toUpperCase();
+                const nextLastName = next.name.lastName.toUpperCase();
+                if (currLastName > nextLastName)
+                    comp = 1;
+                if (currLastName < nextLastName)
+                    comp = -1;
+                return comp;
+            }
+
+            data.sort(lastNameComp);
+            console.log('lastName sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
         });
@@ -112,6 +157,7 @@ function JavaScript() {
         constructData();
     }
 
+
     /* Добавляем код, который вызовет функцию showData,
      когда выполнится загрузка. Он необходим,
      т.к. мы будем выполнять асинхронную загрузку */
@@ -122,12 +168,18 @@ function JavaScript() {
         if (this.readyState == 4 && this.status == 200)
             showData();
     });
+
     /* Выполняем загрузку более быстрым, чем POST,
      методом GET, указывая источник и значение true, означающее,
      что будет произведена асинхронная загрузка */
     ajax.open('GET', 'data.json', true);
     ajax.send();
 }
+
+
+/* Функция для проверки eventListener и прочего содержимого,
+ создана, чтобы в случае неполадок понять какое действие происходит,
+ а какое нет (помогло с eyeColor) */
 function checkValidity(){
     console.log('hello')
 }
