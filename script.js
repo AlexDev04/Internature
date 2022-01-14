@@ -1,6 +1,9 @@
 function JavaScript() {
+
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
+
+
     /* Вынесем вывод данных в функцию,
      чтобы вручную не писать его для каждого элемента в массиве JSON,
      и не загромождать будущий обработчик событий */
@@ -15,6 +18,7 @@ function JavaScript() {
         const eyeSortBtn = document.getElementById('eyeSortBtn')
         /* Убедимся, что DOM прогрузилась перед добавлением eventListener */
         console.log(eyeSortBtn);
+
         eyeSortBtn.addEventListener('click', function () {
             /* Для начала очистим поле таблицы от уже выведенного туда JSON */
             output.innerHTML = '';
@@ -37,6 +41,36 @@ function JavaScript() {
             /* подставляем функцию в метод sort */
             data.sort(eyeColorComp);
             console.log('eyeSort is run')
+            /* Конструируем элементы с помощью функции, которую опишем далее */
+            constructData();
+        });
+
+
+        /* Повторяем абсолютно то же самое для других элементов */
+        const aboutsortbtn = document.getElementById('aboutSortBtn');
+        console.log(aboutsortbtn);
+        aboutsortbtn.addEventListener('click', function () {
+            /* Для начала очистим поле таблицы от уже выведенного туда JSON */
+            output.innerHTML = '';
+            console.log('aboutsortbtn is running...')
+            function aboutComp(curr, next) {
+                console.log ('aboutsortbtn is run');
+                let comp = 0;
+                const currAbout = curr.about.toUpperCase();
+                const nextAbout = next.about.toUpperCase();
+                /* Функция должна возвращать 1, если первый элемент больше второго,
+                 и -1, если первый элемент меньше второго,
+                 что будет позже применено в методе sort */
+                if (currAbout > nextAbout)
+                    comp = 1;
+                if (currAbout < nextAbout)
+                    comp = -1;
+                return comp;
+            }
+
+            /* подставляем функцию в метод sort */
+            data.sort(aboutComp);
+            console.log('aboutSort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
         });
