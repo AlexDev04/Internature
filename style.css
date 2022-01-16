@@ -2,9 +2,15 @@
     width: 100%;
 }
 
+
 table {
     width: 50%;
 }
+td {
+    hyphens: auto;
+}
+
+
 .name {
     width: 1fr;
 }
@@ -25,4 +31,4 @@ table {
     /* Обрезаем все, что не помещается во вторую строку */
     overflow: hidden;
 }
-}
+

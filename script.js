@@ -249,7 +249,7 @@ function JavaScript() {
         /* 'Ловим' момент получения запрошенного файла
          readystate == 4 означает, что запрошенный файл полностью загружен
          status == 200 означает, что запрос обработан, и запрошенный файл выслан*/
-        if (this.readyState == 4 && this.status == 200)
+        if (this.readyState === 4 && this.status === 200)
             showData();
     });
 
