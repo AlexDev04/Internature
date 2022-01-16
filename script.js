@@ -2,7 +2,7 @@ function JavaScript() {
 
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
-
+    const body = document.getElementsByTagName('body')[0];
 
     /* Вынесем вывод данных в функцию,
      чтобы вручную не писать его для каждого элемента в массиве JSON,
@@ -230,21 +230,55 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
                 td.classList.add('eyeColor');
-                td.addEventListener('click', check());
                 tr.appendChild(td);
 
                 /* Помещаем строку в output */
                 output.appendChild(tr);
             });
         }
-        function check(){
-            console.log('hello')
-        }
         /* Собственно физически конструируем таблицу
          вызовом только что заданной функции */
         constructData();
-    }
+        rowsEL()
 
+    }
+    const rows = output.getElementsByTagName('tr');
+    function rowsEL() {
+        let formDiv = document.getElementById('formDiv')
+        let input, form, label, row;
+        for(i=0; i <= rows.length; i++) {
+            row = rows[i];
+            row.addEventListener('click', (row) => {
+                    form = document.createElement('form');
+
+                        label = document.createElement('label');
+                        label.textContent = 'Имя';
+                            input = document.createElement('input');
+                            input.textContent = row.children[0].textContent;
+                        label.appendChild(input);
+                    form.appendChild(label);
+                        label = document.createElement('label');
+                        label.textContent = 'Фамилия';
+                            input = document.createElement('input');
+                            input.textContent = row.children[1].textContent;
+                        label.appendChild(input);
+                    form.appendChild(label);
+                        label = document.createElement('label');
+                        label.textContent = 'Описание';
+                            input = document.createElement('input');
+                            input.textContent = row.children[2].textContent;
+                        label.appendChild(input);
+                    form.appendChild(label);
+                        label = document.createElement('label');
+                        label.textContent = 'Цвет глаз';
+                            input = document.createElement('input');
+                            input.textContent = row.children[3].textContent;
+                        label.appendChild(input);
+                    form.appendChild(label);
+                    formDiv.appendChild(form);
+            });
+        }
+    }
 
     /* Добавляем код, который вызовет функцию showData,
      когда выполнится загрузка. Он необходим,
