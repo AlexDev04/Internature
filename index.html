@@ -7,37 +7,36 @@
 
 </head>
 <body onload="JavaScript(), checkValidity()">
-<div>hello</div>
 <!-- Создаем div, чтобы проще было все 'упаковать' -->
-    <div>
+    <div id="container">
         <!-- Таблица будет упакована в HTML формате
          для удобства редактирования и сортировки -->
-        <table>
+        <table border="1">
             <!-- Шапку таблицы пишем вручную -->
             <thead>
 
                 <tr>
                     <!-- создаем будущие кнопки над каждым столбцом,
                      помещаем их в div для будущей стилизации -->
-                    <td>
+                    <td class="name">
                         <div id="firstNameSortBtn" >Сортировать</div>
                     </td>
-                    <td>
+                    <td class="lastName">
                         <div id="lastNameSortBtn">Сортировать</div>
                     </td>
-                    <td>
+                    <td class="about">
                         <div id="aboutSortBtn">Сортировать</div>
                     </td>
-                    <td>
+                    <td class="eyeColor">
                         <div id="eyeSortBtn">Сортировать</div>
                     </td>
                 </tr>
                 <tr>
                     <!-- пишем иемна колонок -->
-                    <td>Имя</td>
-                    <td>Фамилия</td>
-                    <td>Описание</td>
-                    <td>Цвет глаз</td>
+                    <td class="name">Имя</td>
+                    <td class="lastName">Фамилия</td>
+                    <td class="about">Описание</td>
+                    <td class="eyeColor">Цвет глаз</td>
                 </tr>
 
             </thead>

@@ -210,6 +210,7 @@ function JavaScript() {
                  объекта к нужной паре ключ-значение */
                 td = document.createElement('td');
                 td.textContent = el.name.firstName;
+                td.classList.add('name');
                 /* Теперь физически заносим ячейку к дочерним элементам строки */
                 tr.appendChild(td);
 
@@ -217,14 +218,18 @@ function JavaScript() {
 
                 td = document.createElement('td');
                 td.textContent = el.name.lastName;
+                td.classList.add('lastName');
                 tr.appendChild(td);
 
                 td = document.createElement('td');
+                //td.textContent = (el.about.substr(0,60)) + '...';
                 td.textContent = el.about;
+                td.classList.add('about');
                 tr.appendChild(td);
 
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
+                td.classList.add('eyeColor');
                 tr.appendChild(td);
 
                 /* Помещаем строку в output */

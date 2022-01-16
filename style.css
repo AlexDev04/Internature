@@ -1,7 +1,28 @@
-body {
-    width: auto;
+#container {
+    width: 100%;
 }
 
 table {
     width: 50%;
+}
+.name {
+    width: 1fr;
+}
+.lastName {
+    width: 1fr;
+}
+.eyeColor {
+    width: 1fr;
+}
+.about {
+    width: 2fr;
+    /* Воспользуемся webkit для настройки переноса строк */
+    display: -webkit-box;
+    /* Устанавливаем число отображаемых строк */
+    -webkit-line-clamp: 2;
+    /* Устанавливаем вертикальную ориентацию */
+    -webkit-box-orient: vertical;
+    /* Обрезаем все, что не помещается во вторую строку */
+    overflow: hidden;
+}
 }
