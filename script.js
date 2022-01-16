@@ -248,31 +248,31 @@ function JavaScript() {
         let input, form, label, row;
         for(i=0; i <= rows.length; i++) {
             row = rows[i];
-            row.addEventListener('click', (row) => {
+            row.addEventListener('click', () => {
                     form = document.createElement('form');
 
                         label = document.createElement('label');
                         label.textContent = 'Имя';
                             input = document.createElement('input');
-                            input.textContent = row.children[0].textContent;
+                            input.textContent = 'empty';
                         label.appendChild(input);
                     form.appendChild(label);
                         label = document.createElement('label');
                         label.textContent = 'Фамилия';
                             input = document.createElement('input');
-                            input.textContent = row.children[1].textContent;
+                            input.textContent = 'empty';
                         label.appendChild(input);
                     form.appendChild(label);
                         label = document.createElement('label');
                         label.textContent = 'Описание';
                             input = document.createElement('input');
-                            input.textContent = row.children[2].textContent;
+                            input.textContent = 'empty';
                         label.appendChild(input);
                     form.appendChild(label);
                         label = document.createElement('label');
                         label.textContent = 'Цвет глаз';
                             input = document.createElement('input');
-                            input.textContent = row.children[3].textContent;
+                            input.textContent = 'empty';
                         label.appendChild(input);
                     form.appendChild(label);
                     formDiv.appendChild(form);
