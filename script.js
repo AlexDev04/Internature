@@ -230,11 +230,15 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
                 td.classList.add('eyeColor');
+                td.addEventListener('click', check());
                 tr.appendChild(td);
 
                 /* Помещаем строку в output */
                 output.appendChild(tr);
             });
+        }
+        function check(){
+            console.log('hello')
         }
         /* Собственно физически конструируем таблицу
          вызовом только что заданной функции */
