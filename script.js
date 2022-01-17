@@ -239,7 +239,7 @@ function JavaScript() {
         /* Собственно физически конструируем таблицу
          вызовом только что заданной функции */
         constructData();
-        rowsEL()
+        rowsEL();
 
     }
     const rows = output.getElementsByTagName('tr');
@@ -275,6 +275,9 @@ function JavaScript() {
                             input.textContent = 'empty';
                         label.appendChild(input);
                     form.appendChild(label);
+                        input = document.createElement('input');
+                        input.type = 'submit';
+                    form.appendChild(input);
                     formDiv.appendChild(form);
             });
         }
