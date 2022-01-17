@@ -46,3 +46,14 @@ td {
     overflow: hidden;
 }
 
+#output {
+    cursor: pointer;
+}
+
+#submit {
+    cursor: pointer;
+}
+
+.sortBtn {
+    cursor: pointer;
+}

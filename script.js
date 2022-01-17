@@ -2,7 +2,6 @@ function JavaScript() {
 
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
-    const body = document.getElementsByTagName('body')[0];
 
     /* Вынесем вывод данных в функцию,
      чтобы вручную не писать его для каждого элемента в массиве JSON,
@@ -68,7 +67,7 @@ function JavaScript() {
             console.log('eyeColor sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
-
+            rowsEL();
         });
 
 
@@ -113,6 +112,7 @@ function JavaScript() {
             console.log('about sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Сортируем содержимое столбца firstName */
@@ -155,6 +155,7 @@ function JavaScript() {
             console.log('firstName sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Сортируем содержимое столбца lastName */
@@ -197,6 +198,7 @@ function JavaScript() {
             console.log('lastName sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Начинаем писать функцию конструирование таблицы */
@@ -244,8 +246,10 @@ function JavaScript() {
 
     }
 
-    const rows = output.getElementsByTagName('tr');
+    let rows = output.getElementsByTagName('tr');
     function rowsEL() {
+        rows = null;
+        rows = output.getElementsByTagName('tr');
         let formDiv = document.getElementById('formDiv')
         let input, form, label, row, p, div;
         for(i=0; i < rows.length; i++) {
@@ -293,6 +297,7 @@ function JavaScript() {
 
                         input = document.createElement('input');
                         input.type = 'submit';
+                        input.id = 'submit';
                     form.appendChild(input);
                     div.appendChild(form);
 
