@@ -1,7 +1,21 @@
+#content {
+    display: grid;
+    grid-template-areas: "table form";
+}
 #container {
     width: 100%;
+    grid-area: table;
 }
-
+#formDiv {
+    grid-area: form;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+#inFormDiv {
+    display: flex;
+}
 
 table {
     width: 50%;

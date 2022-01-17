@@ -68,6 +68,7 @@ function JavaScript() {
             console.log('eyeColor sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+
         });
 
 
@@ -242,43 +243,60 @@ function JavaScript() {
         rowsEL();
 
     }
+
     const rows = output.getElementsByTagName('tr');
     function rowsEL() {
         let formDiv = document.getElementById('formDiv')
-        let input, form, label, row;
-        for(i=0; i <= rows.length; i++) {
+        let input, form, label, row, p, div;
+        for(i=0; i < rows.length; i++) {
             row = rows[i];
-            row.addEventListener('click', () => {
+            row.addEventListener('click', (evt) => {
+                formDiv.innerHTML = '';
+                formDiv.style.marginLeft = (window.innerWidth * 0.6) + 'px';
+                formDiv.style.marginTop = (evt.pageY - 75) + 'px';
+                    p = document.createElement('p');
+                    p.textContent = 'Форма редактирования содержимого строки';
+                    formDiv.appendChild(p);
+                    div = document.createElement('div');
+                    div.id = 'inFormDiv';
                     form = document.createElement('form');
 
                         label = document.createElement('label');
                         label.textContent = 'Имя';
                             input = document.createElement('input');
-                            input.textContent = 'empty';
+                            input.type = 'text';
+                            input.required = true;
                         label.appendChild(input);
                     form.appendChild(label);
+
                         label = document.createElement('label');
                         label.textContent = 'Фамилия';
                             input = document.createElement('input');
-                            input.textContent = 'empty';
+                            input.type = 'text';
+                            input. required = true;
                         label.appendChild(input);
                     form.appendChild(label);
                         label = document.createElement('label');
                         label.textContent = 'Описание';
                             input = document.createElement('input');
-                            input.textContent = 'empty';
+                            input.type = 'text';
+                            input. required = true;
                         label.appendChild(input);
                     form.appendChild(label);
                         label = document.createElement('label');
                         label.textContent = 'Цвет глаз';
                             input = document.createElement('input');
-                            input.textContent = 'empty';
+                            input.type = 'text';
+                            input. required = true;
                         label.appendChild(input);
                     form.appendChild(label);
+
                         input = document.createElement('input');
                         input.type = 'submit';
                     form.appendChild(input);
-                    formDiv.appendChild(form);
+                    div.appendChild(form);
+
+                    formDiv.appendChild(div);
             });
         }
     }
