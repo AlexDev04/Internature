@@ -67,6 +67,8 @@ function JavaScript() {
             console.log('eyeColor sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            /* Сразу же вызываем функцию, задающую окно создание формы по клику,
+            чтобы eventListener нашел смозданные в DOM объекты */
             rowsEL();
         });
 
@@ -242,66 +244,87 @@ function JavaScript() {
         /* Собственно физически конструируем таблицу
          вызовом только что заданной функции */
         constructData();
+        /* Сразу же вызовем функцию установки обработчика событий,
+         чтобы в него занеслись созданные ячейки */
         rowsEL();
 
     }
 
-    let rows = output.getElementsByTagName('tr');
+    /* Начнем описание функции, создающей обработчик события для каждой ячейки
+    (фактически - для каждого столбца, но с ячейками понятнее) - при клике на нее
+    будет открыта форма редактирования строки*/
     function rowsEL() {
         rows = null;
+        /* Объявим переменную rows, хранящую доступ к каждой строке таблицы */
         rows = output.getElementsByTagName('tr');
+        /* Получим доступ к элементу, в который запакована форма */
         let formDiv = document.getElementById('formDiv')
         let input, form, label, row, p, div;
         for(i=0; i < rows.length; i++) {
+            /* Ради удобства объявим переменную row,
+             хранящую в себе доступ к текущей строке */
             row = rows[i];
+            /* на каждую строку добавляется обработчик событий */
             row.addEventListener('click', (evt) => {
+                /* Слишком подробно процесс конструирования описан не будет,
+                 все и так понятно - создается форма */
                 formDiv.innerHTML = '';
+                /* Задается вертикальное и горизонтальное положение формы
+                 относительно места клика */
                 formDiv.style.marginLeft = (window.innerWidth * 0.6) + 'px';
-                formDiv.style.marginTop = (evt.pageY - 75) + 'px';
+                if (evt.clientY <= (window.innerHeight / 3.5)) {
+                    formDiv.style.marginTop = (evt.pageY) + 'px';
+                }
+                else if (evt.clientY >= (window.innerHeight / 4 * 3)) {
+                    formDiv.style.marginTop = (evt.pageY - 300) + 'px';
+                }
+                else {
+                    formDiv.style.marginTop = (evt.pageY - 150) + 'px';
+                }
                     p = document.createElement('p');
                     p.textContent = 'Форма редактирования содержимого строки';
-                    formDiv.appendChild(p);
+                formDiv.appendChild(p);
                     div = document.createElement('div');
                     div.id = 'inFormDiv';
-                    form = document.createElement('form');
+                        form = document.createElement('form');
 
-                        label = document.createElement('label');
-                        label.textContent = 'Имя';
-                            input = document.createElement('input');
-                            input.type = 'text';
-                            input.required = true;
-                        label.appendChild(input);
-                    form.appendChild(label);
+                            label = document.createElement('label');
+                            label.textContent = 'Имя';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input.required = true;
+                            label.appendChild(input);
+                        form.appendChild(label);
 
-                        label = document.createElement('label');
-                        label.textContent = 'Фамилия';
-                            input = document.createElement('input');
-                            input.type = 'text';
-                            input. required = true;
-                        label.appendChild(input);
-                    form.appendChild(label);
-                        label = document.createElement('label');
-                        label.textContent = 'Описание';
-                            input = document.createElement('input');
-                            input.type = 'text';
-                            input. required = true;
-                        label.appendChild(input);
-                    form.appendChild(label);
-                        label = document.createElement('label');
-                        label.textContent = 'Цвет глаз';
-                            input = document.createElement('input');
-                            input.type = 'text';
-                            input. required = true;
-                        label.appendChild(input);
-                    form.appendChild(label);
+                            label = document.createElement('label');
+                            label.textContent = 'Фамилия';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                            label.appendChild(input);
+                        form.appendChild(label);
+                            label = document.createElement('label');
+                            label.textContent = 'Описание';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                            label.appendChild(input);
+                        form.appendChild(label);
+                            label = document.createElement('label');
+                            label.textContent = 'Цвет глаз';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                            label.appendChild(input);
+                        form.appendChild(label);
 
-                        input = document.createElement('input');
-                        input.type = 'submit';
-                        input.id = 'submit';
-                    form.appendChild(input);
+                            input = document.createElement('input');
+                            input.type = 'submit';
+                            input.id = 'submit';
+                        form.appendChild(input);
                     div.appendChild(form);
 
-                    formDiv.appendChild(div);
+                formDiv.appendChild(div);
             });
         }
     }
