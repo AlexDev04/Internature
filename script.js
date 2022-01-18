@@ -259,13 +259,14 @@ function JavaScript() {
         rows = output.getElementsByTagName('tr');
         /* Получим доступ к элементу, в который запакована форма */
         let formDiv = document.getElementById('formDiv')
-        let input, form, label, row, p, div;
+        let input, form, label, row, p, div, clearBtn;
         for(i=0; i < rows.length; i++) {
             /* Ради удобства объявим переменную row,
              хранящую в себе доступ к текущей строке */
             row = rows[i];
             /* на каждую строку добавляется обработчик событий */
             row.addEventListener('click', (evt) => {
+                console.log(evt.target);
                 /* Слишком подробно процесс конструирования описан не будет,
                  все и так понятно - создается форма */
                 formDiv.innerHTML = '';
@@ -288,33 +289,62 @@ function JavaScript() {
                     div.id = 'inFormDiv';
                         form = document.createElement('form');
 
+                            /* Имя */
                             label = document.createElement('label');
                             label.textContent = 'Имя';
                                 input = document.createElement('input');
                                 input.type = 'text';
                                 input.required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[0].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[0].textContent;
                             label.appendChild(input);
                         form.appendChild(label);
 
+                            /* Фамилия */
                             label = document.createElement('label');
                             label.textContent = 'Фамилия';
                                 input = document.createElement('input');
                                 input.type = 'text';
                                 input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[1].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[1].textContent;
                             label.appendChild(input);
                         form.appendChild(label);
+
+                            /* Описание */
+
                             label = document.createElement('label');
                             label.textContent = 'Описание';
+                                clearBtn = document.createElement('button');
+                                clearBtn.addEventListener('click', () => {
+                                    clearBtn.nextElementSibling.value = '';
+                                });
+                                clearBtn.class = 'clearBtn';
+                            label.appendChild(clearBtn);
                                 input = document.createElement('input');
                                 input.type = 'text';
                                 input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[2].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[2].textContent;
                             label.appendChild(input);
                         form.appendChild(label);
+
+                            /* Цвет глаз */
                             label = document.createElement('label');
                             label.textContent = 'Цвет глаз';
                                 input = document.createElement('input');
                                 input.type = 'text';
                                 input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[3].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[3].textContent;
                             label.appendChild(input);
                         form.appendChild(label);
 
