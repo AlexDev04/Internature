@@ -12,40 +12,42 @@
         <div id="container">
             <!-- Таблица будет упакована в HTML формате
              для удобства редактирования и сортировки -->
-            <table border="1">
-                <!-- Шапку таблицы пишем вручную -->
-                <thead>
+            <div id="tableDiv">
+                <table border="1">
+                    <!-- Шапку таблицы пишем вручную -->
+                    <thead>
 
-                    <tr>
-                        <!-- создаем будущие кнопки над каждым столбцом,
-                         помещаем их в div для будущей стилизации -->
-                        <td class="name">
-                            <div id="firstNameSortBtn" class="sortBtn">Сортировать</div>
-                        </td>
-                        <td class="lastName">
-                            <div id="lastNameSortBtn" class="sortBtn">Сортировать</div>
-                        </td>
-                        <td class="about">
-                            <div id="aboutSortBtn" class="sortBtn">Сортировать</div>
-                        </td>
-                        <td class="eyeColor">
-                            <div id="eyeSortBtn" class="sortBtn">Сортировать</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <!-- пишем иемна колонок -->
-                        <td class="name">Имя</td>
-                        <td class="lastName">Фамилия</td>
-                        <td class="about">Описание</td>
-                        <td class="eyeColor">Цвет глаз</td>
-                    </tr>
+                        <tr>
+                            <!-- создаем будущие кнопки над каждым столбцом,
+                             помещаем их в div для будущей стилизации -->
+                            <td class="sortTd">
+                                <button id="firstNameSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="lastNameSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="aboutSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="eyeSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- пишем иемна колонок -->
+                            <td class="name">Имя</td>
+                            <td class="lastName">Фамилия</td>
+                            <td class="about">Описание</td>
+                            <td class="eyeColor">Цвет глаз</td>
+                        </tr>
 
-                </thead>
-                <!-- Создаем тело таблицы для вывода туда json
-                 путем конструирования элементов -->
-                <tbody id="output">
-                </tbody>
-            </table>
+                    </thead>
+                    <!-- Создаем тело таблицы для вывода туда json
+                     путем конструирования элементов -->
+                    <tbody id="output">
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div id="formDiv"></div>
     </div>

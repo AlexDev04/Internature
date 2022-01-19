@@ -1,7 +1,6 @@
 #content {
     display: grid;
     grid-template-areas: "table form";
-    gap: 0px;
 }
 #container {
     width: 50%;
@@ -10,31 +9,49 @@
 #formDiv {
     grid-area: form;
     position: absolute;
-    display: flex;
+    display: none;
     flex-direction: column;
-    width: 150px;
+    width: 250px;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 1px;
+    border-radius: 10px;
 }
 #inFormDiv {
+    width: 200px;
+    /* height: 275px; */
     display: flex;
+    border: solid 1px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+form {
+    display: flex;
+    height: 250px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 table {
     width: 100%;
+    border: solid 1px;
+    border-radius: 10px;
 }
 td {
     hyphens: auto;
+    border: solid 1px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
 }
 
 
-.name {
+.name, .lastName, .eyeColor {
     width: 1fr;
 }
-.lastName {
-    width: 1fr;
-}
-.eyeColor {
-    width: 1fr;
-}
+
 .about {
     width: 2fr;
     /* Воспользуемся webkit для настройки переноса строк */
@@ -53,8 +70,38 @@ td {
 
 #submit {
     cursor: pointer;
+    border: solid 1px;
+    border-radius: 10px;
+    width: 50%
 }
 
 .sortBtn {
+    text-align: center;
+    font-size: 9px;
     cursor: pointer;
+    height: 75%;
+    border: solid 1px;
+    border-radius: 10px;
+}
+#formHead {
+    text-align: center;
+}
+
+#tableDiv {
+   padding: 25px;
+   border: solid 1px;
+   border-radius: 10px;
+}
+
+.sortTd {
+    border: none;
+}
+
+.clearBtn {
+    border: solid 1px;
+    border-radius: 10px;
+    font-size: 9px;
+}
+label {
+
 }

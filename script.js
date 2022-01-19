@@ -270,20 +270,36 @@ function JavaScript() {
                 /* Слишком подробно процесс конструирования описан не будет,
                  все и так понятно - создается форма */
                 formDiv.innerHTML = '';
+                formDiv.style.display = 'flex';
                 /* Задается вертикальное и горизонтальное положение формы
                  относительно места клика */
                 formDiv.style.marginLeft = (window.innerWidth * 0.6) + 'px';
-                if (evt.clientY <= (window.innerHeight / 3.5)) {
+                if (evt.clientY <= (window.innerHeight / 3)) {
                     formDiv.style.marginTop = (evt.pageY) + 'px';
+                    console.log('<=/3');
+                }
+                if (evt.clientY <= (window.innerHeight / 3.5)) {
+                    formDiv.style.marginTop = (evt.pageY - 50) + 'px';
+                    console.log('<=/3.5');
+                }
+                else if (evt.clientY >= (window.innerHeight / 4 * 3.5)) {
+                    formDiv.style.marginTop = (evt.pageY - 375) + 'px';
+                    console.log('>=/4*3.5');
                 }
                 else if (evt.clientY >= (window.innerHeight / 4 * 3)) {
-                    formDiv.style.marginTop = (evt.pageY - 300) + 'px';
+                    formDiv.style.marginTop = (evt.pageY - 325) + 'px';
+                    console.log('>=/4*3.5');
+                }
+                else if (evt.clientY >= (window.innerHeight / 4 * 2)) {
+                    formDiv.style.marginTop = (evt.pageY - 250) + 'px';
+                    console.log('>=/4*3');
                 }
                 else {
                     formDiv.style.marginTop = (evt.pageY - 150) + 'px';
                 }
                     p = document.createElement('p');
                     p.textContent = 'Форма редактирования содержимого строки';
+                    p.id = 'formHead';
                 formDiv.appendChild(p);
                     div = document.createElement('div');
                     div.id = 'inFormDiv';
@@ -323,9 +339,10 @@ function JavaScript() {
                                 clearBtn.addEventListener('click', () => {
                                     clearBtn.nextElementSibling.value = '';
                                 });
-                                clearBtn.class = 'clearBtn';
+                                clearBtn.className = 'clearBtn';
+                                clearBtn.textContent = 'очистить';
                             label.appendChild(clearBtn);
-                                input = document.createElement('input');
+                                input = document.createElement('textarea');
                                 input.type = 'text';
                                 input. required = true;
                                 input.placeholder =
