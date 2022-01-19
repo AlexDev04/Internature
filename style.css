@@ -1,10 +1,25 @@
+#content {
+    display: grid;
+    grid-template-areas: "table form";
+    gap: 0px;
+}
 #container {
-    width: 100%;
+    width: 50%;
+    grid-area: table;
+}
+#formDiv {
+    grid-area: form;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+#inFormDiv {
+    display: flex;
 }
 
-
 table {
-    width: 50%;
+    width: 100%;
 }
 td {
     hyphens: auto;
@@ -32,3 +47,14 @@ td {
     overflow: hidden;
 }
 
+#output {
+    cursor: pointer;
+}
+
+#submit {
+    cursor: pointer;
+}
+
+.sortBtn {
+    cursor: pointer;
+}

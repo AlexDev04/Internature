@@ -3,7 +3,6 @@ function JavaScript() {
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
 
-
     /* Вынесем вывод данных в функцию,
      чтобы вручную не писать его для каждого элемента в массиве JSON,
      и не загромождать будущий обработчик событий */
@@ -68,6 +67,9 @@ function JavaScript() {
             console.log('eyeColor sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            /* Сразу же вызываем функцию, задающую окно создание формы по клику,
+            чтобы eventListener нашел смозданные в DOM объекты */
+            rowsEL();
         });
 
 
@@ -112,6 +114,7 @@ function JavaScript() {
             console.log('about sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Сортируем содержимое столбца firstName */
@@ -154,6 +157,7 @@ function JavaScript() {
             console.log('firstName sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Сортируем содержимое столбца lastName */
@@ -196,6 +200,7 @@ function JavaScript() {
             console.log('lastName sort is run')
             /* Конструируем элементы с помощью функции, которую опишем далее */
             constructData();
+            rowsEL();
         });
 
         /* Начинаем писать функцию конструирование таблицы */
@@ -239,8 +244,120 @@ function JavaScript() {
         /* Собственно физически конструируем таблицу
          вызовом только что заданной функции */
         constructData();
+        /* Сразу же вызовем функцию установки обработчика событий,
+         чтобы в него занеслись созданные ячейки */
+        rowsEL();
+
     }
 
+    /* Начнем описание функции, создающей обработчик события для каждой ячейки
+    (фактически - для каждого столбца, но с ячейками понятнее) - при клике на нее
+    будет открыта форма редактирования строки*/
+    function rowsEL() {
+        rows = null;
+        /* Объявим переменную rows, хранящую доступ к каждой строке таблицы */
+        rows = output.getElementsByTagName('tr');
+        /* Получим доступ к элементу, в который запакована форма */
+        let formDiv = document.getElementById('formDiv')
+        let input, form, label, row, p, div, clearBtn;
+        for(i=0; i < rows.length; i++) {
+            /* Ради удобства объявим переменную row,
+             хранящую в себе доступ к текущей строке */
+            row = rows[i];
+            /* на каждую строку добавляется обработчик событий */
+            row.addEventListener('click', (evt) => {
+                console.log(evt.target);
+                /* Слишком подробно процесс конструирования описан не будет,
+                 все и так понятно - создается форма */
+                formDiv.innerHTML = '';
+                /* Задается вертикальное и горизонтальное положение формы
+                 относительно места клика */
+                formDiv.style.marginLeft = (window.innerWidth * 0.6) + 'px';
+                if (evt.clientY <= (window.innerHeight / 3.5)) {
+                    formDiv.style.marginTop = (evt.pageY) + 'px';
+                }
+                else if (evt.clientY >= (window.innerHeight / 4 * 3)) {
+                    formDiv.style.marginTop = (evt.pageY - 300) + 'px';
+                }
+                else {
+                    formDiv.style.marginTop = (evt.pageY - 150) + 'px';
+                }
+                    p = document.createElement('p');
+                    p.textContent = 'Форма редактирования содержимого строки';
+                formDiv.appendChild(p);
+                    div = document.createElement('div');
+                    div.id = 'inFormDiv';
+                        form = document.createElement('form');
+
+                            /* Имя */
+                            label = document.createElement('label');
+                            label.textContent = 'Имя';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input.required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[0].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[0].textContent;
+                            label.appendChild(input);
+                        form.appendChild(label);
+
+                            /* Фамилия */
+                            label = document.createElement('label');
+                            label.textContent = 'Фамилия';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[1].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[1].textContent;
+                            label.appendChild(input);
+                        form.appendChild(label);
+
+                            /* Описание */
+
+                            label = document.createElement('label');
+                            label.textContent = 'Описание';
+                                clearBtn = document.createElement('button');
+                                clearBtn.addEventListener('click', () => {
+                                    clearBtn.nextElementSibling.value = '';
+                                });
+                                clearBtn.class = 'clearBtn';
+                            label.appendChild(clearBtn);
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[2].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[2].textContent;
+                            label.appendChild(input);
+                        form.appendChild(label);
+
+                            /* Цвет глаз */
+                            label = document.createElement('label');
+                            label.textContent = 'Цвет глаз';
+                                input = document.createElement('input');
+                                input.type = 'text';
+                                input. required = true;
+                                input.placeholder =
+                                    evt.target.parentElement.children[3].textContent;
+                                input.value =
+                                    evt.target.parentElement.children[3].textContent;
+                            label.appendChild(input);
+                        form.appendChild(label);
+
+                            input = document.createElement('input');
+                            input.type = 'submit';
+                            input.id = 'submit';
+                        form.appendChild(input);
+                    div.appendChild(form);
+
+                formDiv.appendChild(div);
+            });
+        }
+    }
 
     /* Добавляем код, который вызовет функцию showData,
      когда выполнится загрузка. Он необходим,
