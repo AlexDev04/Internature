@@ -4,100 +4,55 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="script.js"></script> -->
-</head>
-<body>
 
-<!-- Создаем div, чтобы проще было все 'упаковать' -->
-    <div>
-        <table>
-            <!-- Шапку таблицы пишем вручную -->
-            <thead>
-                <tr>
-                    <!-- создаем будущие кнопки над каждым столбцом,
-                     помещаем их в div для будущей стилизации -->
-                    <td>
-                        <div id="firstNameSort">Сортировать</div></td>
-                    <td>
-                        <div id="lastNameSort">Сортировать</div></td>
-                    <td>
-                        <div id="aboutSort">Сортировать</div></td>
-                    <td>
-                        <div id="eyeColorSort">Сортировать</div></td>
-                </tr>
-                <tr>
-                    <!-- пишем иемна колонок -->
-                    <td>Имя</td>
-                    <td>Фамилия</td>
-                    <td>Описание</td>
-                    <td>Цвет глаз</td>
-                </tr>
-            </thead>
-            <!-- Создаем тело таблицы для вывода туда json
-             путем конструирования элементов -->
-            <tbody id="output">
-            </tbody>
-        </table>
+</head>
+<body onload="JavaScript(), checkValidity()">
+    <div id="content">
+    <!-- Создаем div, чтобы проще было все 'упаковать' -->
+        <div id="container">
+            <!-- Таблица упаковывается в еще один блок
+             для более удобной стилизации-->
+            <div id="tableDiv">
+            <!-- Таблица будет упакована в HTML формате
+             для удобства редактирования и сортировки -->
+                <table border="1" cellspacing="5px">
+                    <!-- Шапку таблицы пишем вручную -->
+                    <thead>
+
+                        <tr>
+                            <!-- создаем будущие кнопки над каждым столбцом,
+                             помещаем их в div для будущей стилизации -->
+                            <td class="sortTd">
+                                <button id="firstNameSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="lastNameSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="aboutSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                            <td class="sortTd">
+                                <button id="eyeSortBtn" class="sortBtn">Сортировать</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- пишем иемна колонок -->
+                            <td class="nameHead">Имя</td>
+                            <td class="lastNameHead">Фамилия</td>
+                            <td class="aboutHead">Описание</td>
+                            <td class="eyeColorHead">Цвет глаз</td>
+                        </tr>
+
+                    </thead>
+                    <!-- Создаем тело таблицы для вывода туда json
+                     путем конструирования элементов -->
+                    <tbody id="output">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="formDiv"></div>
     </div>
 </body>
 </html>
-
-<script type="text/javascript">
-
-    const ajax = new XMLHttpRequest();
-    const output = document.getElementById('output');
-    /* Вынесем вывод данных в функцию,
-     чтобы вручную не писать его для каждого элемента в массиве JSON,
-     и не загромождать будущий обработчик событий */
-    function showData(){
-        let tr, td;
-        /* Для расшифровки JSON данных воспользуемся методом responseText*/
-        let data = JSON.parse(ajax.responseText);
-        console.log (data);
-        data.forEach((el) => {
-            /* Создаем строку */
-            tr = document.createElement('tr');
-
-            /* Создаем первую ячейку, в которую заносим имя.
-             получаем его, переходя по структуре 'многоэтажного'
-             объекта к нужной паре ключ-значение */
-            td = document.createElement('td');
-            td.textContent = el.name.firstName;
-            /* Теперь физически заносим ячейку к дочерним элементам строки */
-            tr.appendChild(td);
-
-            /* Таким же образом создаем и остальные ячейки */
-
-            td = document.createElement('td');
-            td.textContent = el.name.lastName;
-            tr.appendChild(td);
-
-            td = document.createElement('td');
-            td.textContent = el.about;
-            tr.appendChild(td);
-
-            td = document.createElement('td');
-            td.textContent = el.eyeColor;
-            tr.appendChild(td);
-
-            /* Помещаем строку в output */
-            output.appendChild(tr);
-        });
-    }
-    /* Добавляем код, который вызовет функцию showData,
-     когда выполнится загрузка. Он необходим,
-     т.к. мы будем выполнять асинхронную загрузку */
-    ajax.addEventListener('readystatechange', function() {
-        /* 'Ловим' момент получения запрошенного файла
-         readystate == 4 означает, что запрошенный файл полностью загружен
-         status == 200 означает, что запрос обработан, и запрошенный файл выслан*/
-        if (this.readyState == 4 && this.status == 200)
-            showData();
-    });
-    /* Выполняем загрузку более быстрым, чем POST,
-     методом GET, указывая источник и значение true, означающее,
-     что будет произведена асинхронная загрузка */
-    ajax.open('GET','data.json', true);
-    ajax.send();
-
-</script>
+<script src="script.js" type="text/javascript"></script>

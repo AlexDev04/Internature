@@ -1,7 +1,162 @@
+/* Тело */
+
 body {
-    width: auto;
+    font-family: "Calibri Light";
 }
 
-table {
-    width: 50%;
+#content {
+    display: grid;
+    grid-template-areas: "table form";
 }
+
+/* Форма */
+
+#formDiv {
+    grid-area: form;
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 215px;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    border-radius: 3px;
+    background-color: #B0A295;
+    padding: 15px;
+}
+#formHead {
+     text-align: center;
+     font-size: large;
+ }
+#inFormDiv {
+    width: 150px;
+    /* height: 275px; */
+    display: flex;
+
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #7395AE;
+}
+form {
+    display: flex;
+    height: 250px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+#submit {
+     cursor: pointer;
+     border: solid 1px;
+     border-radius: 10px;
+     width: 50%;
+     background-color: #38566b;
+     color: white;
+
+ }
+.clearBtn {
+    border: solid 1px;
+    border-radius: 10px;
+    font-size: 9px;
+    background-color: #38566b;
+    color: white;
+    margin-left: 25px;
+}
+textarea {
+    font-family: "Calibri Light";
+    width: 135px;
+}
+input {
+    font-family: "Calibri Light";
+}
+label {
+
+}
+
+/* Таблица */
+
+#container {
+    width: 50%;
+    grid-area: table;
+
+}
+#tableDiv {
+
+ }
+
+table {
+    width: 100%;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    /*background-color: #B0A295;*/
+
+}
+td {
+    hyphens: auto;
+    border: none;
+    border-radius: 3px;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+}
+#output {
+    cursor: pointer;
+}
+
+.name {
+    width: 1fr;
+    background-color: #B2C5DB;
+}
+.lastName {
+    width: 1fr;
+    background-color: #B0A295;
+    margin: 3px;
+}
+.about {
+    width: 2fr;
+    /* Воспользуемся webkit для настройки переноса строк */
+    display: -webkit-box;
+    /* Устанавливаем число отображаемых строк */
+    -webkit-line-clamp: 2;
+    /* Устанавливаем вертикальную ориентацию */
+    -webkit-box-orient: vertical;
+    /* Обрезаем все, что не помещается во вторую строку */
+    overflow: hidden;
+    background-color: #B2C5DB;
+}
+.eyeColor {
+    width: 1fr;
+    background-color: #B0A295;
+}
+
+.sortTd {
+    border: none;
+}
+.sortBtn {
+    text-align: center;
+    font-size: 9px;
+    cursor: pointer;
+    height: 75%;
+    border: solid 1px;
+    border-radius: 10px;
+    background-color: #38566b;
+    color: white;
+
+}
+
+.nameHead {
+    background-color: #7395AE;
+}
+.lastNameHead {
+    background-color: #7395AE;
+}
+.aboutHead {
+    background-color: #7395AE;
+}
+.eyeColorHead {
+    background-color: #7395AE;
+}
+
+
