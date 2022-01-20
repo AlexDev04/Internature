@@ -207,7 +207,7 @@ function JavaScript() {
         });
 
         /* Начинаем писать функцию конструирования таблицы */
-        let tr, td;
+        let tr, td, div;
         function constructData() {
             data.forEach((el) => {
                 /* Создаем строку */
@@ -230,7 +230,6 @@ function JavaScript() {
                 tr.appendChild(td);
 
                 td = document.createElement('td');
-                //td.textContent = (el.about.substr(0,60)) + '...';
                 td.textContent = el.about;
                 td.classList.add('about');
                 tr.appendChild(td);
@@ -238,7 +237,19 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
                 td.classList.add('eyeColor');
+                    div = document.createElement('div');
+                    div.style.backgroundColor = el.eyeColor;
+                    div.id = 'Indicator';
+                    div.style.width = '5px';
+                    div.style.height = '5px';
+                    div.style.display = 'inline-block';
+                    div.style.margin = '3px';
+                    div.style.verticalAlign = 'middle';
+                    div.style.borderRadius = '5px';
+
+                td.appendChild(div);
                 tr.appendChild(td);
+
 
                 /* Помещаем строку в output */
                 output.appendChild(tr);
