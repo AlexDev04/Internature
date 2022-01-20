@@ -15,15 +15,16 @@ body {
     position: absolute;
     display: none;
     flex-direction: column;
-    width: 250px;
+    width: 225px;
     justify-content: space-around;
     align-items: center;
     color: white;
     border-radius: 3px;
     background-color: #B0A295;
+    padding: 15px;
 }
 #inFormDiv {
-    width: 200px;
+    width: 150px;
     /* height: 275px; */
     display: flex;
 
@@ -55,7 +56,7 @@ td {
     border-radius: 3px;
     overflow: hidden;
     text-align: center;
-
+    cursor: pointer;
 }
 
 .name {
@@ -111,6 +112,7 @@ td {
 }
 #formHead {
     text-align: center;
+    font-size: large;
 }
 
 #tableDiv {
@@ -119,7 +121,6 @@ td {
 
 .sortTd {
     border: none;
-
 }
 
 .clearBtn {
@@ -128,6 +129,7 @@ td {
     font-size: 9px;
     background-color: #38566b;
     color: white;
+    margin-left: 25px;
 }
 
 .nameHead {
@@ -144,7 +146,11 @@ td {
 }
 textarea {
     font-family: "Calibri Light";
+    width: 135px;
 }
 input {
     font-family: "Calibri Light";
+}
+label {
+
 }
