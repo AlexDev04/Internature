@@ -1,3 +1,6 @@
+body {
+    font-family: "Calibri Light";
+}
 #content {
     display: grid;
     grid-template-areas: "table form";
@@ -5,6 +8,7 @@
 #container {
     width: 50%;
     grid-area: table;
+
 }
 #formDiv {
     grid-area: form;
@@ -14,17 +18,19 @@
     width: 250px;
     justify-content: space-around;
     align-items: center;
-    border: solid 1px;
-    border-radius: 10px;
+    color: white;
+    border-radius: 3px;
+    background-color: #B0A295;
 }
 #inFormDiv {
     width: 200px;
     /* height: 275px; */
     display: flex;
-    border: solid 1px;
-    border-radius: 10px;
+
+    border-radius: 3px;
     margin: 10px;
     padding: 10px;
+    background-color: #7395AE;
 }
 form {
     display: flex;
@@ -32,26 +38,35 @@ form {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
 }
 
 table {
     width: 100%;
-    border: solid 1px;
-    border-radius: 10px;
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    /*background-color: #B0A295;*/
+
 }
 td {
     hyphens: auto;
-    border: solid 1px;
-    border-radius: 10px;
+    border: none;
+    border-radius: 3px;
     overflow: hidden;
     text-align: center;
+
 }
 
-
-.name, .lastName, .eyeColor {
+.name {
     width: 1fr;
+    background-color: #B2C5DB;
 }
-
+.lastName {
+    width: 1fr;
+    background-color: #B0A295;
+    margin: 3px;
+}
 .about {
     width: 2fr;
     /* Воспользуемся webkit для настройки переноса строк */
@@ -62,6 +77,11 @@ td {
     -webkit-box-orient: vertical;
     /* Обрезаем все, что не помещается во вторую строку */
     overflow: hidden;
+    background-color: #B2C5DB;
+}
+.eyeColor {
+    width: 1fr;
+    background-color: #B0A295;
 }
 
 #output {
@@ -72,7 +92,10 @@ td {
     cursor: pointer;
     border: solid 1px;
     border-radius: 10px;
-    width: 50%
+    width: 50%;
+    background-color: #38566b;
+    color: white;
+
 }
 
 .sortBtn {
@@ -82,26 +105,46 @@ td {
     height: 75%;
     border: solid 1px;
     border-radius: 10px;
+    background-color: #38566b;
+    color: white;
+
 }
 #formHead {
     text-align: center;
 }
 
 #tableDiv {
-   padding: 25px;
-   border: solid 1px;
-   border-radius: 10px;
+
 }
 
 .sortTd {
     border: none;
+
 }
 
 .clearBtn {
     border: solid 1px;
     border-radius: 10px;
     font-size: 9px;
+    background-color: #38566b;
+    color: white;
 }
-label {
 
+.nameHead {
+    background-color: #7395AE;
+}
+.lastNameHead {
+    background-color: #7395AE;
+}
+.aboutHead {
+    background-color: #7395AE;
+}
+.eyeColorHead {
+    background-color: #7395AE;
+}
+textarea {
+    font-family: "Calibri Light";
+}
+input {
+    font-family: "Calibri Light";
 }
