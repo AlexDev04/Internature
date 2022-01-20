@@ -1,5 +1,8 @@
+/*Оборачиваем весь JS файл в функцию, чтобы
+дождавшись прогрузки дерева DOM работать с ним*/
 function JavaScript() {
 
+    /* Создадим объект AJAX */
     const ajax = new XMLHttpRequest();
     const output = document.getElementById('output');
 
@@ -203,7 +206,7 @@ function JavaScript() {
             rowsEL();
         });
 
-        /* Начинаем писать функцию конструирование таблицы */
+        /* Начинаем писать функцию конструирования таблицы */
         let tr, td;
         function constructData() {
             data.forEach((el) => {
@@ -297,6 +300,7 @@ function JavaScript() {
                 else {
                     formDiv.style.marginTop = (evt.pageY - 150) + 'px';
                 }
+                /* Конструируем форму */
                     p = document.createElement('p');
                     p.textContent = 'Форма редактирования содержимого строки';
                     p.id = 'formHead';
@@ -375,7 +379,6 @@ function JavaScript() {
             });
         }
     }
-
     /* Добавляем код, который вызовет функцию showData,
      когда выполнится загрузка. Он необходим,
      т.к. мы будем выполнять асинхронную загрузку */

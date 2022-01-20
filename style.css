@@ -1,21 +1,22 @@
+/* Тело */
+
 body {
     font-family: "Calibri Light";
 }
+
 #content {
     display: grid;
     grid-template-areas: "table form";
 }
-#container {
-    width: 50%;
-    grid-area: table;
 
-}
+/* Форма */
+
 #formDiv {
     grid-area: form;
     position: absolute;
     display: none;
     flex-direction: column;
-    width: 225px;
+    width: 215px;
     justify-content: space-around;
     align-items: center;
     color: white;
@@ -23,6 +24,10 @@ body {
     background-color: #B0A295;
     padding: 15px;
 }
+#formHead {
+     text-align: center;
+     font-size: large;
+ }
 #inFormDiv {
     width: 150px;
     /* height: 275px; */
@@ -41,6 +46,44 @@ form {
     align-items: center;
 
 }
+#submit {
+     cursor: pointer;
+     border: solid 1px;
+     border-radius: 10px;
+     width: 50%;
+     background-color: #38566b;
+     color: white;
+
+ }
+.clearBtn {
+    border: solid 1px;
+    border-radius: 10px;
+    font-size: 9px;
+    background-color: #38566b;
+    color: white;
+    margin-left: 25px;
+}
+textarea {
+    font-family: "Calibri Light";
+    width: 135px;
+}
+input {
+    font-family: "Calibri Light";
+}
+label {
+
+}
+
+/* Таблица */
+
+#container {
+    width: 50%;
+    grid-area: table;
+
+}
+#tableDiv {
+
+ }
 
 table {
     width: 100%;
@@ -56,6 +99,9 @@ td {
     border-radius: 3px;
     overflow: hidden;
     text-align: center;
+    cursor: pointer;
+}
+#output {
     cursor: pointer;
 }
 
@@ -85,20 +131,9 @@ td {
     background-color: #B0A295;
 }
 
-#output {
-    cursor: pointer;
+.sortTd {
+    border: none;
 }
-
-#submit {
-    cursor: pointer;
-    border: solid 1px;
-    border-radius: 10px;
-    width: 50%;
-    background-color: #38566b;
-    color: white;
-
-}
-
 .sortBtn {
     text-align: center;
     font-size: 9px;
@@ -109,27 +144,6 @@ td {
     background-color: #38566b;
     color: white;
 
-}
-#formHead {
-    text-align: center;
-    font-size: large;
-}
-
-#tableDiv {
-
-}
-
-.sortTd {
-    border: none;
-}
-
-.clearBtn {
-    border: solid 1px;
-    border-radius: 10px;
-    font-size: 9px;
-    background-color: #38566b;
-    color: white;
-    margin-left: 25px;
 }
 
 .nameHead {
@@ -144,13 +158,5 @@ td {
 .eyeColorHead {
     background-color: #7395AE;
 }
-textarea {
-    font-family: "Calibri Light";
-    width: 135px;
-}
-input {
-    font-family: "Calibri Light";
-}
-label {
 
-}
+
