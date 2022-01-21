@@ -159,5 +159,8 @@ td {
     background-color: #7395AE;
 }
 
-
+tdClosed {
+    opacity: 0;
+    width: 0px;
+}
 

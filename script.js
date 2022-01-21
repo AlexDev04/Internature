@@ -207,7 +207,7 @@ function JavaScript() {
         });
 
         /* Начинаем писать функцию конструирования таблицы */
-        let tr, td, div;
+        let tr, td, colorDiv;
         function constructData() {
             data.forEach((el) => {
                 /* Создаем строку */
@@ -237,17 +237,17 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
                 td.classList.add('eyeColor');
-                    div = document.createElement('div');
-                    div.style.backgroundColor = el.eyeColor;
-                    div.id = 'Indicator';
-                    div.style.width = '5px';
-                    div.style.height = '5px';
-                    div.style.display = 'inline-block';
-                    div.style.margin = '3px';
-                    div.style.verticalAlign = 'middle';
-                    div.style.borderRadius = '5px';
+                    colorDiv = document.createElement('div');
+                    colorDiv.style.backgroundColor = el.eyeColor;
+                    colorDiv.id = 'Indicator';
+                    colorDiv.style.width = '5px';
+                    colorDiv.style.height = '5px';
+                    colorDiv.style.display = 'inline-block';
+                    colorDiv.style.margin = '3px';
+                    colorDiv.style.verticalAlign = 'middle';
+                    colorDiv.style.borderRadius = '5px';
 
-                td.appendChild(div);
+                td.appendChild(colorDiv);
                 tr.appendChild(td);
 
 
@@ -273,14 +273,15 @@ function JavaScript() {
         rows = output.getElementsByTagName('tr');
         /* Получим доступ к элементу, в который запакована форма */
         let formDiv = document.getElementById('formDiv')
-        let input, form, label, row, p, div, clearBtn;
+        let form, label, row, p, div, clearBtn;
         for(i=0; i < rows.length; i++) {
             /* Ради удобства объявим переменную row,
              хранящую в себе доступ к текущей строке */
             row = rows[i];
             /* на каждую строку добавляется обработчик событий */
             row.addEventListener('click', (evt) => {
-                console.log(evt.target);
+                let rowTargetTd = evt.target;
+                console.log(rowTargetTd);
                 /* Слишком подробно процесс конструирования описан не будет,
                  все и так понятно - создается форма */
                 formDiv.innerHTML = '';
@@ -323,27 +324,27 @@ function JavaScript() {
                             /* Имя */
                             label = document.createElement('label');
                             label.textContent = 'Имя';
-                                input = document.createElement('input');
-                                input.type = 'text';
-                                input.required = true;
-                                input.placeholder =
+                                inputFirstName = document.createElement('input');
+                                inputFirstName.type = 'text';
+                                inputFirstName.required = true;
+                                inputFirstName.placeholder =
                                     evt.target.parentElement.children[0].textContent;
-                                input.value =
+                                inputFirstName.value =
                                     evt.target.parentElement.children[0].textContent;
-                            label.appendChild(input);
+                            label.appendChild(inputFirstName);
                         form.appendChild(label);
 
                             /* Фамилия */
                             label = document.createElement('label');
                             label.textContent = 'Фамилия';
-                                input = document.createElement('input');
-                                input.type = 'text';
-                                input. required = true;
-                                input.placeholder =
+                                inputLastName = document.createElement('input');
+                                inputLastName.type = 'text';
+                                inputLastName. required = true;
+                                inputLastName.placeholder =
                                     evt.target.parentElement.children[1].textContent;
-                                input.value =
+                                inputLastName.value =
                                     evt.target.parentElement.children[1].textContent;
-                            label.appendChild(input);
+                            label.appendChild(inputLastName);
                         form.appendChild(label);
 
                             /* Описание */
@@ -357,33 +358,70 @@ function JavaScript() {
                                 clearBtn.className = 'clearBtn';
                                 clearBtn.textContent = 'очистить';
                             label.appendChild(clearBtn);
-                                input = document.createElement('textarea');
-                                input.type = 'text';
-                                input. required = true;
-                                input.placeholder =
+                                inputAbout = document.createElement('textarea');
+                                inputAbout.type = 'text';
+                                inputAbout. required = true;
+                                inputAbout.placeholder =
                                     evt.target.parentElement.children[2].textContent;
-                                input.value =
+                                inputAbout.value =
                                     evt.target.parentElement.children[2].textContent;
-                            label.appendChild(input);
+                            label.appendChild(inputAbout);
                         form.appendChild(label);
 
                             /* Цвет глаз */
                             label = document.createElement('label');
                             label.textContent = 'Цвет глаз';
-                                input = document.createElement('input');
-                                input.type = 'text';
-                                input. required = true;
-                                input.placeholder =
+                                inputEyeColor = document.createElement('input');
+                                inputEyeColor.type = 'text';
+                                inputEyeColor. required = true;
+                                inputEyeColor.placeholder =
                                     evt.target.parentElement.children[3].textContent;
-                                input.value =
+                                inputEyeColor.value =
                                     evt.target.parentElement.children[3].textContent;
-                            label.appendChild(input);
+                            label.appendChild(inputEyeColor);
                         form.appendChild(label);
 
-                            input = document.createElement('input');
-                            input.type = 'submit';
-                            input.id = 'submit';
-                        form.appendChild(input);
+                            let submit = document.createElement('input');
+                            submit.type = 'submit';
+                            submit.id = 'submit';
+                            console.log(submit);
+                            /* Добавляем возможность заносить редактирование в таблицу.
+                             Для того ,чтобы в дальнейшем разработчик смог брать
+                             измененную пользователем информацию и заносить ее
+                             в JSON необходимо создать обработчик события на выходе
+                             из страницы, а как событие добавить непосредственно сбор
+                             информации из таблицы, что будет вполне удобно.
+                             Процесс будет похож на вывод JSON в таблицу HTML,
+                             только наоборот */
+                            submit.addEventListener('click',
+                                (evt) => {
+                                evt.preventDefault();
+                                formDiv.style.display = 'none';
+                                rowTargetTd.parentElement.children[0].innerHTML = '';
+                                    rowTargetTd.parentElement.children[0].innerHTML =
+                                        inputFirstName.value;
+                                rowTargetTd.parentElement.children[1].innerHTML = '';
+                                    rowTargetTd.parentElement.children[1].innerHTML =
+                                        inputLastName.value;
+                                rowTargetTd.parentElement.children[2].innerHTML = '';
+                                    rowTargetTd.parentElement.children[2].innerHTML =
+                                        inputAbout.value;
+                                rowTargetTd.parentElement.children[3].innerHTML = '';
+                                    rowTargetTd.parentElement.children[3].innerHTML =
+                                        inputEyeColor.value;
+                                /*Снова создаем div, осуществляющий дублирование цвета глаз */
+                                let colorDiv = document.createElement('div');
+                                colorDiv.style.backgroundColor = inputEyeColor.value;
+                                colorDiv.id = 'Indicator';
+                                colorDiv.style.width = '5px';
+                                colorDiv.style.height = '5px';
+                                colorDiv.style.display = 'inline-block';
+                                colorDiv.style.margin = '3px';
+                                colorDiv.style.verticalAlign = 'middle';
+                                colorDiv.style.borderRadius = '5px';
+                                rowTargetTd.parentElement.children[3].appendChild(colorDiv);
+                                });
+                        form.appendChild(submit);
                     div.appendChild(form);
 
                 formDiv.appendChild(div);
