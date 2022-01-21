@@ -219,6 +219,7 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.name.firstName;
                 td.classList.add('name');
+                td.classList.add('visibleCol');
                 /* Теперь физически заносим ячейку к дочерним элементам строки */
                 tr.appendChild(td);
 
@@ -227,16 +228,19 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.name.lastName;
                 td.classList.add('lastName');
+                td.classList.add('visibleCol');
                 tr.appendChild(td);
 
                 td = document.createElement('td');
                 td.textContent = el.about;
                 td.classList.add('about');
+                td.classList.add('visibleCol');
                 tr.appendChild(td);
 
                 td = document.createElement('td');
                 td.textContent = el.eyeColor;
                 td.classList.add('eyeColor');
+                td.classList.add('visibleCol');
                     colorDiv = document.createElement('div');
                     colorDiv.style.backgroundColor = el.eyeColor;
                     colorDiv.id = 'Indicator';
@@ -261,14 +265,14 @@ function JavaScript() {
         /* Сразу же вызовем функцию установки обработчика событий,
          чтобы в него занеслись созданные ячейки */
         rowsEL();
-
+        hideBtns();
     }
 
     /* Начнем описание функции, создающей обработчик события для каждой ячейки
     (фактически - для каждого столбца, но с ячейками понятнее) - при клике на нее
     будет открыта форма редактирования строки*/
     function rowsEL() {
-        rows = null;
+        let rows;
         /* Объявим переменную rows, хранящую доступ к каждой строке таблицы */
         rows = output.getElementsByTagName('tr');
         /* Получим доступ к элементу, в который запакована форма */
@@ -279,8 +283,9 @@ function JavaScript() {
              хранящую в себе доступ к текущей строке */
             row = rows[i];
             /* на каждую строку добавляется обработчик событий */
+            let rowTargetTd;
             row.addEventListener('click', (evt) => {
-                let rowTargetTd = evt.target;
+                rowTargetTd = evt.target;
                 console.log(rowTargetTd);
                 /* Слишком подробно процесс конструирования описан не будет,
                  все и так понятно - создается форма */
@@ -328,9 +333,9 @@ function JavaScript() {
                                 inputFirstName.type = 'text';
                                 inputFirstName.required = true;
                                 inputFirstName.placeholder =
-                                    evt.target.parentElement.children[0].textContent;
+                                    rowTargetTd.parentElement.children[0].textContent;
                                 inputFirstName.value =
-                                    evt.target.parentElement.children[0].textContent;
+                                    rowTargetTd.parentElement.children[0].textContent;
                             label.appendChild(inputFirstName);
                         form.appendChild(label);
 
@@ -341,9 +346,9 @@ function JavaScript() {
                                 inputLastName.type = 'text';
                                 inputLastName. required = true;
                                 inputLastName.placeholder =
-                                    evt.target.parentElement.children[1].textContent;
+                                    rowTargetTd.parentElement.children[1].textContent;
                                 inputLastName.value =
-                                    evt.target.parentElement.children[1].textContent;
+                                    rowTargetTd.parentElement.children[1].textContent;
                             label.appendChild(inputLastName);
                         form.appendChild(label);
 
@@ -362,9 +367,9 @@ function JavaScript() {
                                 inputAbout.type = 'text';
                                 inputAbout. required = true;
                                 inputAbout.placeholder =
-                                    evt.target.parentElement.children[2].textContent;
+                                    rowTargetTd.parentElement.children[2].textContent;
                                 inputAbout.value =
-                                    evt.target.parentElement.children[2].textContent;
+                                    rowTargetTd.parentElement.children[2].textContent;
                             label.appendChild(inputAbout);
                         form.appendChild(label);
 
@@ -375,9 +380,9 @@ function JavaScript() {
                                 inputEyeColor.type = 'text';
                                 inputEyeColor. required = true;
                                 inputEyeColor.placeholder =
-                                    evt.target.parentElement.children[3].textContent;
+                                    rowTargetTd.parentElement.children[3].textContent;
                                 inputEyeColor.value =
-                                    evt.target.parentElement.children[3].textContent;
+                                    rowTargetTd.parentElement.children[3].textContent;
                             label.appendChild(inputEyeColor);
                         form.appendChild(label);
 
@@ -427,6 +432,31 @@ function JavaScript() {
                 formDiv.appendChild(div);
             });
         }
+
+    }
+    function hideBtns() {
+        let sortRow = document.getElementById('closers');
+        let curImg;
+        let rows = document.getElementsByTagName('tr');
+        sortRow.addEventListener('click', function(evt) {
+            curImg = evt.target;
+            console.log (curImg);
+            let appropTd;
+            for (i = 1; i < rows.length; i++) {
+                appropTd = rows[i].children[+curImg.id];
+                if (appropTd.classList.contains('visibleCol')) {
+                    appropTd.classList.remove('visibleCol');
+                    appropTd.classList.add('hiddenCol');
+                    curImg.src = 'images/hidden.png';
+                }
+                else {
+                    appropTd.classList.remove('hiddenCol');
+                    appropTd.classList.add('visibleCol');
+                    curImg.src = 'images/visible.png';
+                }
+            }
+
+        })
     }
     /* Добавляем код, который вызовет функцию showData,
      когда выполнится загрузка. Он необходим,

@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
-<body onload="JavaScript(), checkValidity()">
+<body onload="JavaScript(); checkValidity()">
     <div id="content">
     <!-- Создаем div, чтобы проще было все 'упаковать' -->
         <div id="container">
@@ -18,29 +18,38 @@
                 <table border="1" cellspacing="5px">
                     <!-- Шапку таблицы пишем вручную -->
                     <thead>
-
+                        <tr id="closers">
+                            <td> <img id="0" class="openCol visibleCol" src="images/visible.png">
+                                </td>
+                            <td> <img id="1" class="openCol visibleCol" src="images/visible.png">
+                                </td>
+                            <td> <img id="2" class="openCol visibleCol" src="images/visible.png">
+                                </td>
+                            <td> <img id="3" class="openCol visibleCol" src="images/visible.png">
+                                </td>
+                        </tr>
                         <tr>
                             <!-- создаем будущие кнопки над каждым столбцом,
                              помещаем их в div для будущей стилизации -->
-                            <td class="sortTd">
+                            <td class="sortTd visibleCol">
                                 <button id="firstNameSortBtn" class="sortBtn">Сортировать</button>
                             </td>
-                            <td class="sortTd">
+                            <td class="sortTd visibleCol">
                                 <button id="lastNameSortBtn" class="sortBtn">Сортировать</button>
                             </td>
-                            <td class="sortTd">
+                            <td class="sortTd visibleCol">
                                 <button id="aboutSortBtn" class="sortBtn">Сортировать</button>
                             </td>
-                            <td class="sortTd">
+                            <td class="sortTd visibleCol">
                                 <button id="eyeSortBtn" class="sortBtn">Сортировать</button>
                             </td>
                         </tr>
                         <tr>
                             <!-- пишем иемна колонок -->
-                            <td class="nameHead">Имя</td>
-                            <td class="lastNameHead">Фамилия</td>
-                            <td class="aboutHead">Описание</td>
-                            <td class="eyeColorHead">Цвет глаз</td>
+                            <td class="nameHead visibleCol">Имя</td>
+                            <td class="lastNameHead visibleCol">Фамилия</td>
+                            <td class="aboutHead visibleCol">Описание</td>
+                            <td class="eyeColorHead visibleCol">Цвет глаз</td>
                         </tr>
 
                     </thead>

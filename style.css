@@ -106,16 +106,16 @@ td {
 }
 
 .name {
-    width: 1fr;
+    width: 15%;
     background-color: #B2C5DB;
 }
 .lastName {
-    width: 1fr;
+    width: 15%;
     background-color: #B0A295;
     margin: 3px;
 }
 .about {
-    width: 2fr;
+    width: auto;
     /* Воспользуемся webkit для настройки переноса строк */
     display: -webkit-box;
     /* Устанавливаем число отображаемых строк */
@@ -127,7 +127,7 @@ td {
     background-color: #B2C5DB;
 }
 .eyeColor {
-    width: 1fr;
+    width: 15%;
     background-color: #B0A295;
 }
 
@@ -164,3 +164,20 @@ tdClosed {
     width: 0px;
 }
 
+.openCol {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
+
+.closeCol {
+
+}
+
+.visibleCol {
+
+}
+.hiddenCol {
+    opacity: 0;
+    width: 20px;
+}
