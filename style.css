@@ -91,6 +91,7 @@ table {
     border: none;
     padding: 0px;
     /*background-color: #B0A295;*/
+    border-spacing: 5px;
 
 }
 td {
@@ -159,25 +160,27 @@ td {
     background-color: #7395AE;
 }
 
-tdClosed {
-    opacity: 0;
-    width: 0px;
+#closersRow {
+    margin-bottom: -25px;
 }
-
-.openCol {
+.openColBtn {
     display: inline-block;
-    width: 15px;
-    height: 15px;
-}
-
-.closeCol {
-
+    width: 20px;
+    height: 20px;
 }
 
 .visibleCol {
-
+    width: 15%;
 }
+.visibleAboutCol {
+    width: auto;
+}
+
 .hiddenCol {
+    opacity: 0;
+    width: 20px;
+}
+.hiddenAboutCol {
     opacity: 0;
     width: 20px;
 }

@@ -234,7 +234,7 @@ function JavaScript() {
                 td = document.createElement('td');
                 td.textContent = el.about;
                 td.classList.add('about');
-                td.classList.add('visibleCol');
+                td.classList.add('visibleAboutCol');
                 tr.appendChild(td);
 
                 td = document.createElement('td');
@@ -265,7 +265,7 @@ function JavaScript() {
         /* Сразу же вызовем функцию установки обработчика событий,
          чтобы в него занеслись созданные ячейки */
         rowsEL();
-        hideBtns();
+        hideCols();
     }
 
     /* Начнем описание функции, создающей обработчик события для каждой ячейки
@@ -434,24 +434,38 @@ function JavaScript() {
         }
 
     }
-    function hideBtns() {
-        let sortRow = document.getElementById('closers');
+    function hideCols() {
+        let sortRow = document.getElementById('closersRow');
         let curImg;
         let rows = document.getElementsByTagName('tr');
         sortRow.addEventListener('click', function(evt) {
             curImg = evt.target;
             console.log (curImg);
             let appropTd;
-            for (i = 1; i < rows.length; i++) {
+            for (let i = 1; i < rows.length; i++) {
                 appropTd = rows[i].children[+curImg.id];
                 if (appropTd.classList.contains('visibleCol')) {
                     appropTd.classList.remove('visibleCol');
                     appropTd.classList.add('hiddenCol');
+                    curImg.parentElement.style.width = '20px';
                     curImg.src = 'images/hidden.png';
+                }
+                else if (appropTd.classList.contains('visibleAboutCol')) {
+                    appropTd.classList.remove('visibleAboutCol');
+                    appropTd.classList.add('hiddenAboutCol');
+                    curImg.parentElement.style.width = '20px';
+                    curImg.src = 'images/hidden.png';
+                }
+                else if (appropTd.classList.contains('hiddenAboutCol')) {
+                    appropTd.classList.remove('hiddenAboutCol');
+                    appropTd.classList.add('visibleAboutCol');
+                    curImg.parentElement.style.width = '55%';
+                    curImg.src = 'images/visible.png';
                 }
                 else {
                     appropTd.classList.remove('hiddenCol');
                     appropTd.classList.add('visibleCol');
+                    curImg.parentElement.style.width = '15%';
                     curImg.src = 'images/visible.png';
                 }
             }

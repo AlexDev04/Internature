@@ -15,17 +15,21 @@
             <div id="tableDiv">
             <!-- Таблица будет упакована в HTML формате
              для удобства редактирования и сортировки -->
-                <table border="1" cellspacing="5px">
+                <table border="1" >
                     <!-- Шапку таблицы пишем вручную -->
                     <thead>
-                        <tr id="closers">
-                            <td> <img id="0" class="openCol visibleCol" src="images/visible.png">
+                        <tr id="closersRow">
+                            <td class=" visibleCol">
+                                <img id="0" class="openColBtn" src="images/visible.png">
                                 </td>
-                            <td> <img id="1" class="openCol visibleCol" src="images/visible.png">
+                            <td class="visibleCol">
+                                <img id="1" class="openColBtn" src="images/visible.png">
                                 </td>
-                            <td> <img id="2" class="openCol visibleCol" src="images/visible.png">
+                            <td class=" visibleAboutCol">
+                                <img id="2" class="openColBtn" src="images/visible.png">
                                 </td>
-                            <td> <img id="3" class="openCol visibleCol" src="images/visible.png">
+                            <td class="visibleCol">
+                                <img id="3" class="openColBtn" src="images/visible.png">
                                 </td>
                         </tr>
                         <tr>
@@ -37,7 +41,7 @@
                             <td class="sortTd visibleCol">
                                 <button id="lastNameSortBtn" class="sortBtn">Сортировать</button>
                             </td>
-                            <td class="sortTd visibleCol">
+                            <td class="sortTd visibleAboutCol">
                                 <button id="aboutSortBtn" class="sortBtn">Сортировать</button>
                             </td>
                             <td class="sortTd visibleCol">
@@ -48,7 +52,7 @@
                             <!-- пишем иемна колонок -->
                             <td class="nameHead visibleCol">Имя</td>
                             <td class="lastNameHead visibleCol">Фамилия</td>
-                            <td class="aboutHead visibleCol">Описание</td>
+                            <td class="aboutHead visibleAboutCol">Описание</td>
                             <td class="eyeColorHead visibleCol">Цвет глаз</td>
                         </tr>
 
