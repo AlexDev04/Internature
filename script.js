@@ -2,15 +2,15 @@ const ajax = new XMLHttpRequest();
 function showData() {
     let data = JSON.parse(ajax.responseText);
     console.log(data);
-    //data[1] = new User(this.name.firstName, this,name.lastName, this.about, this.eyeColor);
-
+    const output = document.getElementById('output');
     function User (firstName, lastName, about, eyeColor) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.about = about;
         this.eyeColor = eyeColor;
-        this.constructRow = function(createFirstName, createLastName,
-            createAbout,createEyeColor) {
+        this.constructRow = function(createFirstName = true,
+            createLastName = true, createAbout = true,
+            createEyeColor = true) {
             row = document.createElement('tr');
 
                 /* First Name */
@@ -18,82 +18,86 @@ function showData() {
                     console.log('FN');
                     cell = document.createElement('td');
                         text = document.createElement('p');
-                        text.textcontent = this.firstName;
+                        text.textContent = this.firstName;
                     cell.appendChild(text);
                     cell.classList.add('activeCell');
                     row.appendChild(cell);
                 }
                 else {
                     console.log('noFN');
-                    /*cell = document.createElement('cell');
+                    cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
 
                 /* LastName */
                 if (createLastName) {
                     console.log('LN');
-                    /*cell = document.createElement('td');
+                    cell = document.createElement('td');
                         text = document.createElement('p');
-                        text.textcontent = this.lastName;
+                        text.textContent = this.lastName;
                     cell.appendChild(text);
                     cell.classList.add('activeCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
                 else {
                     console.log('noLN');
-                    /*cell = document.createElement('cell');
+                    cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
 
                 /* About */
                 if (createAbout) {
                     console.log('Ab');
-                    /*cell = document.createElement('td');
+                    cell = document.createElement('td');
                         text = document.createElement('p');
-                        text.textcontent = this.about;
+                        text.textContent = this.about;
                     cell.appendChild(text);
                     cell.classList.add('activeCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
                 else {
                     console.log('noAb');
-                    /*cell = document.createElement('cell');
+                    cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
 
                 /* EyeColor */
                 if (createEyeColor) {
                     console.log('EC');
-                    /*cell = document.createElement('td');
+                    cell = document.createElement('td');
                         text = document.createElement('p');
-                        text.textcontent = this.firstName;
+                        text.textContent = this.eyeColor;
                     cell.appendChild(text);
                     cell.classList.add('activeCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
                 else {
                     console.log('noEC');
-                    /*cell = document.createElement('cell');
+                    cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
-                    row.appendChild(cell);*/
+                    row.appendChild(cell);
                 }
 
         return row;
         }
     }
-
+    let users = [];
     data.forEach( function (el) {
-        curUser = new User(el.name.firstName, el.name.lastName, el.about, el.eyeColor)
-        newRow = curUser.constructRow(true, false, false, false);
+        curUser = new User(el.name.firstName, el.name.lastName, el.about, el.eyeColor);
+        users.push(curUser);
+        //newRow = curUser.constructRow();
+        //console.log(newRow);
+        //output.appendChild(newRow);
+    });
+    users.forEach( function (el) {
+        newRow = el.constructRow();
         console.log(newRow);
-        //output.appendChild('newRow')
-
+        output.appendChild(newRow);
     });
 
-    //console.log(User);
 }
 
 ajax.addEventListener('readystatechange', function () {
