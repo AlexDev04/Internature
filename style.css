@@ -1,0 +1,9 @@
+.activeCell {
+    /* Shown cell */
+}
+
+.unactiveCell {
+    /* Cell, that mustn't be shown. this rule's specificity
+     is more than previous, so JS will add this class and
+     element will take its features */
+}

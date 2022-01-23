@@ -9,13 +9,88 @@ function showData() {
         this.lastName = lastName;
         this.about = about;
         this.eyeColor = eyeColor;
-        
+        this.constructRow = function(createFirstName, createLastName,
+            createAbout,createEyeColor) {
+            row = document.createElement('tr');
+
+                /* First Name */
+                if (createFirstName) {
+                    console.log('FN');
+                    cell = document.createElement('td');
+                        text = document.createElement('p');
+                        text.textcontent = this.firstName;
+                    cell.appendChild(text);
+                    cell.classList.add('activeCell');
+                    row.appendChild(cell);
+                }
+                else {
+                    console.log('noFN');
+                    /*cell = document.createElement('cell');
+                    cell.classList.toggle('unactiveCell');
+                    row.appendChild(cell);*/
+                }
+
+                /* LastName */
+                if (createLastName) {
+                    console.log('LN');
+                    /*cell = document.createElement('td');
+                        text = document.createElement('p');
+                        text.textcontent = this.lastName;
+                    cell.appendChild(text);
+                    cell.classList.add('activeCell');
+                    row.appendChild(cell);*/
+                }
+                else {
+                    console.log('noLN');
+                    /*cell = document.createElement('cell');
+                    cell.classList.toggle('unactiveCell');
+                    row.appendChild(cell);*/
+                }
+
+                /* About */
+                if (createAbout) {
+                    console.log('Ab');
+                    /*cell = document.createElement('td');
+                        text = document.createElement('p');
+                        text.textcontent = this.about;
+                    cell.appendChild(text);
+                    cell.classList.add('activeCell');
+                    row.appendChild(cell);*/
+                }
+                else {
+                    console.log('noAb');
+                    /*cell = document.createElement('cell');
+                    cell.classList.toggle('unactiveCell');
+                    row.appendChild(cell);*/
+                }
+
+                /* EyeColor */
+                if (createEyeColor) {
+                    console.log('EC');
+                    /*cell = document.createElement('td');
+                        text = document.createElement('p');
+                        text.textcontent = this.firstName;
+                    cell.appendChild(text);
+                    cell.classList.add('activeCell');
+                    row.appendChild(cell);*/
+                }
+                else {
+                    console.log('noEC');
+                    /*cell = document.createElement('cell');
+                    cell.classList.toggle('unactiveCell');
+                    row.appendChild(cell);*/
+                }
+
+        return row;
+        }
     }
 
     data.forEach( function (el) {
-        console.log(
-            new User(el.name.firstName, el.name.lastName, el.about, el.eyeColor)
-        );
+        curUser = new User(el.name.firstName, el.name.lastName, el.about, el.eyeColor)
+        newRow = curUser.constructRow(true, false, false, false);
+        console.log(newRow);
+        //output.appendChild('newRow')
+
     });
 
     //console.log(User);
