@@ -17,7 +17,6 @@ function showData() {
 
                 /* First Name */
                 if (createFirstName) {
-                    console.log('FN');
                     cell = document.createElement('td');
                         text = document.createElement('p');
                         text.textContent = this.firstName;
@@ -26,7 +25,6 @@ function showData() {
                     row.appendChild(cell);
                 }
                 else {
-                    console.log('noFN');
                     cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
                     row.appendChild(cell);
@@ -34,7 +32,6 @@ function showData() {
 
                 /* LastName */
                 if (createLastName) {
-                    console.log('LN');
                     cell = document.createElement('td');
                         text = document.createElement('p');
                         text.textContent = this.lastName;
@@ -43,7 +40,6 @@ function showData() {
                     row.appendChild(cell);
                 }
                 else {
-                    console.log('noLN');
                     cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
                     row.appendChild(cell);
@@ -51,7 +47,6 @@ function showData() {
 
                 /* About */
                 if (createAbout) {
-                    console.log('Ab');
                     cell = document.createElement('td');
                         text = document.createElement('p');
                         text.textContent = this.about;
@@ -60,7 +55,6 @@ function showData() {
                     row.appendChild(cell);
                 }
                 else {
-                    console.log('noAb');
                     cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
                     row.appendChild(cell);
@@ -68,7 +62,6 @@ function showData() {
 
                 /* EyeColor */
                 if (createEyeColor) {
-                    console.log('EC');
                     cell = document.createElement('td');
                         text = document.createElement('p');
                         text.textContent = this.eyeColor;
@@ -77,7 +70,6 @@ function showData() {
                     row.appendChild(cell);
                 }
                 else {
-                    console.log('noEC');
                     cell = document.createElement('cell');
                     cell.classList.toggle('unactiveCell');
                     row.appendChild(cell);
@@ -93,20 +85,45 @@ function showData() {
         //console.log(newRow);
         //output.appendChild(newRow);
     });
+    console.log(users);
     users.forEach( function (el) {
         newRow = el.constructRow();
-        console.log(newRow);
         output.appendChild(newRow);
     });
-    let sortBtns = document.getElementsByClassName('sortBtn');
-    for (let i = 0; i <= sortBtns.length; i++) {
-        curSortBtn = sortBtns[i];
-        curSortBtn.addEventListener('click', function() {
-            users.sort((cur, next) => {
-                if (el1.firstName )
-                });
+
+    /* sorting first name */
+    const firstNameSortBtn = document.getElementById('firstNameSortBtn');
+    let firstNameClickOdd = true;
+    firstNameSortBtn.addEventListener('click', function() {
+        users.sort ((cur, next) => {
+            if(firstNameClickOdd) {
+                //firstNameClickOdd = false;
+                if(cur.firstName.toUpperCase() < next.firstName.toUpperCase()) {
+                    return -1;
+                }
+                else if (cur.firstName.toUpperCase() > next.firstName.toUpperCase()) {
+                    return 1;
+                }
+                //else {return 0}
+            }
+            else {
+                //firstNameClickOdd = true;
+                if(cur.firstName.toUpperCase() < next.firstName.toUpperCase()) {
+                    return 1;
+                }
+                else if (cur.firstName.toUpperCase() > next.firstName.toUpperCase()) {
+                    return -1;
+                }
+                //else {return 0}
+            }
+        })
+        output.innerHTML = '';
+        users.forEach( function (el) {
+            newRow = el.constructRow();
+            output.appendChild(newRow);
         });
-    }
+    })
+
 
 }
 
