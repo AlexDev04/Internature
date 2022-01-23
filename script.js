@@ -1,4 +1,6 @@
 const ajax = new XMLHttpRequest();
+/*..................................................*/
+
 function showData() {
     let data = JSON.parse(ajax.responseText);
     console.log(data);
@@ -80,7 +82,6 @@ function showData() {
                     cell.classList.toggle('unactiveCell');
                     row.appendChild(cell);
                 }
-
         return row;
         }
     }
@@ -97,14 +98,25 @@ function showData() {
         console.log(newRow);
         output.appendChild(newRow);
     });
+    let sortBtns = document.getElementsByClassName('sortBtn');
+    for (let i = 0; i <= sortBtns.length; i++) {
+        curSortBtn = sortBtns[i];
+        curSortBtn.addEventListener('click', function() {
+            users.sort((cur, next) => {
+                if (el1.firstName )
+                });
+        });
+    }
 
 }
 
+
+
+/*..................................................*/
 ajax.addEventListener('readystatechange', function () {
     if (this.readyState === 4 && this.status === 200)
         showData();
 });
-
 
 ajax.open('GET', 'data.json', true);
 ajax.send();
