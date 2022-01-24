@@ -96,11 +96,11 @@ function showData() {
     });
     console.log(users);
 
-    function constructTable() {
+    function constructTable( firstName, lastName, about, eyeColor) {
         output.innerHTML = '';
         let newRow;
         users.forEach(function (el) {
-            newRow = el.constructRow();
+            newRow = el.constructRow(firstName, lastName, about, eyeColor);
             output.appendChild(newRow);
         });
     }
@@ -290,6 +290,39 @@ function showData() {
                 form.elements[2].placeholder = users[i].eyeColor;
             });
         }
+    }
+    let hideBtns = document.getElementsByClassName('hideBtn');
+    for (let i = 0; i < hideBtns.length; i++) {
+        hideBtns[i].addEventListener('click', function(evt) {
+            if (hideBtns[i].src === 'images/visible.png') {
+                hideBtns[i].src = 'images/hidden.png';
+            }
+            else {
+                hideBtns[i].src = 'images/visible.png'
+            }
+            switch (i) {
+                case 0:
+                    constructTable(false, true,
+                        true, true);
+                    break;
+                case 1:
+                    constructTable(true, false,
+                        true, true);
+                    break;
+                case 2:
+                    constructTable(true, true,
+                        false, true);
+                    break;
+                case 3:
+                    constructTable(true, true,
+                        true, false);
+                    break;
+                default:
+                    constructTable();
+                    break;
+
+            }
+        })
     }
 }
 
