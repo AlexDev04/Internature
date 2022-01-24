@@ -13,7 +13,8 @@ function showData() {
         this.eyeColor = eyeColor;
         let row, cell, text;
         this.constructRow = function (createFirstName = true,
-                                      createLastName = true, createAbout = true,
+                                      createLastName = true,
+                                      createAbout = true,
                                       createEyeColor = true) {
             row = document.createElement('tr');
 
@@ -24,10 +25,12 @@ function showData() {
                 text.textContent = this.firstName;
                 cell.appendChild(text);
                 cell.classList.add('activeCell');
+                cell.classList.add('firstNameCell');
                 row.appendChild(cell);
             } else {
                 cell = document.createElement('cell');
                 cell.classList.toggle('unactiveCell');
+                cell.classList.add('firstNameCell');
                 row.appendChild(cell);
             }
 
@@ -38,10 +41,12 @@ function showData() {
                 text.textContent = this.lastName;
                 cell.appendChild(text);
                 cell.classList.add('activeCell');
+                cell.classList.add('lastNameCell');
                 row.appendChild(cell);
             } else {
                 cell = document.createElement('cell');
                 cell.classList.toggle('unactiveCell');
+                cell.classList.add('lastNameCell');
                 row.appendChild(cell);
             }
 
@@ -52,10 +57,12 @@ function showData() {
                 text.textContent = this.about;
                 cell.appendChild(text);
                 cell.classList.add('activeCell');
+                cell.classList.add('aboutCell');
                 row.appendChild(cell);
             } else {
                 cell = document.createElement('cell');
                 cell.classList.toggle('unactiveCell');
+                cell.classList.add('aboutCell');
                 row.appendChild(cell);
             }
 
@@ -66,10 +73,12 @@ function showData() {
                 text.textContent = this.eyeColor;
                 cell.appendChild(text);
                 cell.classList.add('activeCell');
+                cell.classList.add('eyeColorCell');
                 row.appendChild(cell);
             } else {
                 cell = document.createElement('cell');
                 cell.classList.toggle('unactiveCell');
+                cell.classList.add('eyeColorCell');
                 row.appendChild(cell);
             }
             return row;
@@ -96,6 +105,7 @@ function showData() {
         });
     }
     constructTable();
+    rowsEl();
 
 
     /* sorting first name */
@@ -137,13 +147,13 @@ function showData() {
 
         users.sort(firstNameComp);
         constructTable();
+        rowsEl();
     })
 
     /* Last name sort */
     const lastNameSortBtn = document.getElementById('lastNameSortBtn');
     let lastNameClickOdd = false;
     lastNameSortBtn.addEventListener('click', function() {
-
         if (!lastNameClickOdd) {
             lastNameClickOdd = true;
             console.log('lastNameSortBtn - odd click');
@@ -177,6 +187,7 @@ function showData() {
         }
         users.sort(lastNameComp);
         constructTable();
+        rowsEl();
     })
 
     /* About sort */
@@ -217,6 +228,7 @@ function showData() {
         }
         users.sort(aboutComp);
         constructTable();
+        rowsEl();
     })
 
     /* Eye color sort */
@@ -257,8 +269,28 @@ function showData() {
         }
         users.sort(eyeColorComp);
         constructTable();
+        rowsEl();
     })
 
+    /* Edit form */
+    const form = document.forms[0];
+    function rowsEl() {
+        let rows = output.getElementsByTagName('tr');
+        let targetTd;
+        for (let i = 0; i < rows.length; i++) {
+            rows[i].addEventListener('click', function (evt) {
+                targetTd = evt.target;
+                form.elements[0].value = users[i].firstName;
+                form.elements[0].placeholder = users[i].firstName;
+                form.elements[1].value = users[i].lastName;
+                form.elements[0].placeholder = users[i].lastName;
+                form.elements[2].value = users[i].about;
+                form.elements[2].placeholder = users[i].about;
+                form.elements[3].value = users[i].eyeColor;
+                form.elements[2].placeholder = users[i].eyeColor;
+            });
+        }
+    }
 }
 
 
