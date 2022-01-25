@@ -1,3 +1,12 @@
+/* TABLE */
+
+/* Main */
+
+table {
+
+}
+
+/* specific */
 .activeCell {
     /* Shown cell */
 }
@@ -12,3 +21,5 @@
     width: 20px;
     height: 20px;
 }
+
+/* FORM */

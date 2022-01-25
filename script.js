@@ -294,37 +294,63 @@ function showData() {
 
     /* Hide buttons */
     let hideBtns = document.getElementsByClassName('hideBtn');
+    let clickOddBtn0 = false, clickOddBtn1 = false,
+        clickOddBtn2 = false, clickOddBtn3 = false;
     for (let i = 0; i < hideBtns.length; i++) {
         hideBtns[i].addEventListener('click', function(evt) {
-            evt.preventDefault();
-            if (hideBtns[i].src === 'images/visible.png') {
-                hideBtns[i].src = 'images/hidden.png';
+            for (let i = 0; i < hideBtns.length; i++) {
+                hideBtns[i]. src = 'images/visible.png';
             }
-            else if (hideBtns[i].src === 'images/hidden.png') {
-                hideBtns[i].src = 'images/visible.png'
-            }
-            switch (i) {
-                case 0:
-                    constructTable(false, true,
-                        true, true);
-                    break;
-                case 1:
-                    constructTable(true, false,
-                        true, true);
-                    break;
-                case 2:
-                    constructTable(true, true,
-                        false, true);
-                    break;
-                case 3:
-                    constructTable(true, true,
-                        true, false);
-                    break;
-                default:
-                    constructTable();
-                    break;
 
+            if (i === 0) {
+                if (!clickOddBtn0) {
+                    constructTable(false);
+                    hideBtns[i].src = 'images/hidden.png';
+                    clickOddBtn0 = true;
+                }
+                else {
+                    constructTable();
+                    hideBtns[i].src = 'images/visible.png';
+                    clickOddBtn0 = false;
+                }
             }
+            if (i === 1) {
+                if (!clickOddBtn1) {
+                    constructTable(true, false);
+                    hideBtns[i].src = 'images/hidden.png';
+                    clickOddBtn1 = true;
+                }
+                else {
+                    constructTable();
+                    hideBtns[i].src = 'images/visible.png';
+                    clickOddBtn1 = false;
+                }
+            }
+            if (i === 2) {
+                if (!clickOddBtn2) {
+                    constructTable(true, true, false);
+                    hideBtns[i].src = 'images/hidden.png';
+                    clickOddBtn2 = true;
+                }
+                else {
+                    constructTable();
+                    hideBtns[i].src = 'images/visible.png';
+                    clickOddBtn2 = false;
+                }
+            }
+            else if (i === 3) {
+                if (!clickOddBtn3) {
+                    constructTable(true, true, true, false);
+                    hideBtns[i].src = 'images/hidden.png';
+                    clickOddBtn3 = true;
+                }
+                else {
+                    constructTable();
+                    hideBtns[i].src = 'images/visible.png';
+                    clickOddBtn3 = false;
+                }
+            }
+
         })
     }
 }
