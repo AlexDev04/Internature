@@ -1,25 +1,52 @@
+/*  POSITIONING */
+#content {
+    display: grid;
+    grid-template-areas: "table form";
+    font-family: "Calibri Light";
+    width: 100%;
+}
+#tableDiv {
+    grid-area: table;
+    width: 50%;
+}
+#formDiv {
+    position: absolute;
+    grid-area: form;
+    width: 50%;
+}
+
+
 /* TABLE */
 
 /* Main */
-
 table {
-
+    border-spacing: 5px;
+}
+td {
+    border: solid 1px;
 }
 
 /* specific */
 .activeCell {
     /* Shown cell */
 }
-
 .unactiveCell {
     /* Cell, that mustn't be shown. this rule's specificity
      is more than previous, so JS will add this class and
      element will take its features */
 }
-
 .hideBtn {
     width: 20px;
     height: 20px;
 }
 
+
 /* FORM */
+
+/* Main*/
+input {
+    font-family: "Calibri Light";
+}
+textarea {
+    font-family: "Calibri Light";
+}

@@ -288,6 +288,7 @@ function showData() {
                 form.elements[2].placeholder = users[i].about;
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
+
             });
         }
     }
@@ -313,6 +314,7 @@ function showData() {
                     hideBtns[i].src = 'images/visible.png';
                     clickOddBtn0 = false;
                 }
+                rowsEl();
             }
             if (i === 1) {
                 if (!clickOddBtn1) {
@@ -325,6 +327,7 @@ function showData() {
                     hideBtns[i].src = 'images/visible.png';
                     clickOddBtn1 = false;
                 }
+                rowsEl();
             }
             if (i === 2) {
                 if (!clickOddBtn2) {
@@ -337,6 +340,7 @@ function showData() {
                     hideBtns[i].src = 'images/visible.png';
                     clickOddBtn2 = false;
                 }
+                rowsEl();
             }
             else if (i === 3) {
                 if (!clickOddBtn3) {
@@ -349,8 +353,8 @@ function showData() {
                     hideBtns[i].src = 'images/visible.png';
                     clickOddBtn3 = false;
                 }
+                rowsEl();
             }
-
         })
     }
 }

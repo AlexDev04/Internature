@@ -6,85 +6,86 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="content">
+    <div id="tableDiv">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
+                    </td>
+                    <td>
+                        <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
+                    </td>
+                    <td>
+                        <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
+                    </td>
+                    <td>
+                        <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="firstNameSortBtn" class="sortBtn"> Sort </button>
+                        <!-- Sort button -->
+                    </td>
+                    <td>
+                        <button id="lastNameSortBtn" class="sortBtn"> Sort </button>
+                        <!-- Sort button -->
+                    </td>
+                    <td>
+                        <button id="aboutSortBtn" class="sortBtn"> Sort </button>
+                        <!-- Sort button -->
+                    </td>
+                    <td>
+                        <button id="eyeColorSortBtn" class="sortBtn"> Sort </button>
+                        <!-- Sort button -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p> First name </p>
+                    </td>
+                    <td>
+                        <p> Last name </p>
+                    </td>
+                    <td>
+                        <p> About </p>
+                    </td>
+                    <td>
+                        <p> Eye color </p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody id="output">
 
-<div id="tableDiv">
-    <table>
-        <thead>
-            <tr>
-                <td>
-                    <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
-                </td>
-                <td>
-                    <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
-                </td>
-                <td>
-                    <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
-                </td>
-                <td>
-                    <img class="hideBtn" src="images/visible.png"> <!-- Hide switcher -->
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="firstNameSortBtn" class="sortBtn"> Sort </button>
-                    <!-- Sort button -->
-                </td>
-                <td>
-                    <button id="lastNameSortBtn" class="sortBtn"> Sort </button>
-                    <!-- Sort button -->
-                </td>
-                <td>
-                    <button id="aboutSortBtn" class="sortBtn"> Sort </button>
-                    <!-- Sort button -->
-                </td>
-                <td>
-                    <button id="eyeColorSortBtn" class="sortBtn"> Sort </button>
-                    <!-- Sort button -->
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p> First name </p>
-                </td>
-                <td>
-                    <p> Last name </p>
-                </td>
-                <td>
-                    <p> About </p>
-                </td>
-                <td>
-                    <p> Eye color </p>
-                </td>
-            </tr>
-        </thead>
-        <tbody id="output">
+            </tbody>
+        </table>
+    </div>
 
-        </tbody>
-    </table>
-</div>
-
-<div id="formDiv">
-    <p> Row editing form </p>
-    <form>
-        <label>
-            First name
-            <input required>
-        </label>
-        <label>
-            Last name
-            <input required>
-        </label>
-        <label>
-            About
-            <textarea required>
-            </textarea>
-        </label>
-        <label>
-            Eye color
-            <input required>
-        </label>
-        <input type="submit" value="submit">
-    </form>
+    <div id="formDiv">
+        <p> Row editing form </p>
+        <form>
+            <label>
+                First name
+                <input required>
+            </label>
+            <label>
+                Last name
+                <input required>
+            </label>
+            <label>
+                About
+                <textarea required>
+                </textarea>
+            </label>
+            <label>
+                Eye color
+                <input required>
+            </label>
+            <input type="submit" value="submit">
+        </form>
+    </div>
 </div>
 
 </body>
