@@ -55,6 +55,7 @@ function showData() {
                 cell = document.createElement('td');
                 text = document.createElement('p');
                 text.textContent = this.about;
+                text.className = 'aboutText';
                 cell.appendChild(text);
                 cell.classList.add('activeCell');
                 cell.classList.add('aboutCell');

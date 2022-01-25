@@ -16,6 +16,7 @@
     width: 30%;
     margin-top: 5%;
     margin-left: 60%;
+    text-align: center;
 }
 
 
@@ -24,12 +25,19 @@
 /* Main */
 table {
     border-spacing: 5px;
+    text-align: center;
 }
 td {
     border: solid 1px;
 }
 
 /* specific */
+p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 .activeCell {
     /* Shown cell */
 }
@@ -43,21 +51,55 @@ td {
     height: 20px;
 }
 .colorDiv {
-    width: 10px;
-    height: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 7px;
+    border-radius: 5px;
+    width: 5px;
+    height: 5px;
+}
+.firstNameCell {
+    width: 20%;
+    cursor: pointer;
+}
+.lastNameCell {
+    width: 20%;
+    cursor: pointer;
+}
+.aboutCell {
+    width: 40%;
+    cursor: pointer;
+}
+.eyeColorCell {
+    width: 20%;
+    cursor: pointer;
+}
+.eyeColorCell > p {
+    display: inline;
 }
 
 /* FORM */
 
-/* Main*/
+/* Main */
 form {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
+    text-align: center;
+    grid-gap: 5px;
 }
 input {
     font-family: "Calibri Light";
 }
 textarea {
     font-family: "Calibri Light";
+}
+label {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Specific */
+#submit {
+    width: 35%;
 }
