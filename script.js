@@ -11,7 +11,7 @@ function showData() {
         this.lastName = lastName;
         this.about = about;
         this.eyeColor = eyeColor;
-        let row, cell, text;
+        let row, cell, text, colorDiv;
         this.constructRow = function (createFirstName = true,
                                       createLastName = true,
                                       createAbout = true,
@@ -72,6 +72,10 @@ function showData() {
                 text = document.createElement('p');
                 text.textContent = this.eyeColor;
                 cell.appendChild(text);
+                colorDiv = document.createElement('div');
+                colorDiv.style.backgroundColor = this.eyeColor;
+                colorDiv.className = 'colorDiv';
+                cell.appendChild(colorDiv);
                 cell.classList.add('activeCell');
                 cell.classList.add('eyeColorCell');
                 row.appendChild(cell);
@@ -112,38 +116,41 @@ function showData() {
     const firstNameSortBtn = document.getElementById('firstNameSortBtn');
     let firstNameClickOdd = false;
     firstNameSortBtn.addEventListener('click', function() {
+        for (let i = 0; i < hideBtns.length; i++) {
+            hideBtns[i]. src = 'images/visible.png';
+        }
 
-            if (!firstNameClickOdd) {
-                firstNameClickOdd = true;
-                console.log('firstNameSortBtn - odd click');
+        if (!firstNameClickOdd) {
+            firstNameClickOdd = true;
+            console.log('firstNameSortBtn - odd click');
+        }
+        else {
+            firstNameClickOdd = false;
+            console.log('firstNameSortBtn - even click');
+        }
+
+        function firstNameComp(curr, next) {
+            console.log ('func firstNameComp is run');
+            let comp = 0;
+            const currFirstName = curr.firstName.toUpperCase();
+            const nextFirstName = next.firstName.toUpperCase();
+
+            if (firstNameClickOdd) {
+                if (currFirstName > nextFirstName)
+                    comp = 1;
+                if (currFirstName < nextFirstName)
+                    comp = -1;
+                return comp;
             }
             else {
-                firstNameClickOdd = false;
-                console.log('firstNameSortBtn - even click');
+                if (currFirstName > nextFirstName)
+                    comp = -1;
+                if (currFirstName < nextFirstName)
+                    comp = 1;
+                return comp;
             }
 
-            function firstNameComp(curr, next) {
-                console.log ('func firstNameComp is run');
-                let comp = 0;
-                const currFirstName = curr.firstName.toUpperCase();
-                const nextFirstName = next.firstName.toUpperCase();
-
-                if (firstNameClickOdd) {
-                    if (currFirstName > nextFirstName)
-                        comp = 1;
-                    if (currFirstName < nextFirstName)
-                        comp = -1;
-                    return comp;
-                }
-                else {
-                    if (currFirstName > nextFirstName)
-                        comp = -1;
-                    if (currFirstName < nextFirstName)
-                        comp = 1;
-                    return comp;
-                }
-
-            }
+        }
 
         users.sort(firstNameComp);
         constructTable();
@@ -154,6 +161,10 @@ function showData() {
     const lastNameSortBtn = document.getElementById('lastNameSortBtn');
     let lastNameClickOdd = false;
     lastNameSortBtn.addEventListener('click', function() {
+        for (let i = 0; i < hideBtns.length; i++) {
+            hideBtns[i]. src = 'images/visible.png';
+        }
+
         if (!lastNameClickOdd) {
             lastNameClickOdd = true;
             console.log('lastNameSortBtn - odd click');
@@ -194,6 +205,9 @@ function showData() {
     const aboutSortBtn = document.getElementById('aboutSortBtn');
     let aboutClickOdd = false;
     aboutSortBtn.addEventListener('click', function() {
+        for (let i = 0; i < hideBtns.length; i++) {
+            hideBtns[i]. src = 'images/visible.png';
+        }
 
         if (!aboutClickOdd) {
             aboutClickOdd = true;
@@ -235,6 +249,9 @@ function showData() {
     const eyeColorSortBtn = document.getElementById('eyeColorSortBtn');
     let eyeColorClickOdd = false;
     eyeColorSortBtn.addEventListener('click', function() {
+        for (let i = 0; i < hideBtns.length; i++) {
+            hideBtns[i]. src = 'images/visible.png';
+        }
 
         if (!eyeColorClickOdd) {
             eyeColorClickOdd = true;
@@ -288,7 +305,7 @@ function showData() {
                 form.elements[2].placeholder = users[i].about;
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
-
+                form.parentElement.style.display = 'grid';
             });
         }
     }
@@ -298,7 +315,7 @@ function showData() {
     let clickOddBtn0 = false, clickOddBtn1 = false,
         clickOddBtn2 = false, clickOddBtn3 = false;
     for (let i = 0; i < hideBtns.length; i++) {
-        hideBtns[i].addEventListener('click', function(evt) {
+        hideBtns[i].addEventListener('click', function() {
             for (let i = 0; i < hideBtns.length; i++) {
                 hideBtns[i]. src = 'images/visible.png';
             }
