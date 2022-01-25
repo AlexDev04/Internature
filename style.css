@@ -7,3 +7,8 @@
      is more than previous, so JS will add this class and
      element will take its features */
 }
+
+.hideBtn {
+    width: 20px;
+    height: 20px;
+}

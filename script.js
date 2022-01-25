@@ -291,13 +291,16 @@ function showData() {
             });
         }
     }
+
+    /* Hide buttons */
     let hideBtns = document.getElementsByClassName('hideBtn');
     for (let i = 0; i < hideBtns.length; i++) {
         hideBtns[i].addEventListener('click', function(evt) {
+            evt.preventDefault();
             if (hideBtns[i].src === 'images/visible.png') {
                 hideBtns[i].src = 'images/hidden.png';
             }
-            else {
+            else if (hideBtns[i].src === 'images/hidden.png') {
                 hideBtns[i].src = 'images/visible.png'
             }
             switch (i) {
