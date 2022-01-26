@@ -1,21 +1,29 @@
+/* Creating a XMLHttpRequest */
 const ajax = new XMLHttpRequest();
 /*..................................................*/
-
+/* First of all, we should pack all the cod into function to call it
+when AJAX will be ready and JSON will have been processed */
 function showData() {
     let data = JSON.parse(ajax.responseText);
     console.log(data);
     const output = document.getElementById('output');
-
+    /* In my first version of the site,  I didn't used OOP.
+     I think you would be glad to see my  OOP skills.
+     Declaring a new class with a consturctor function */
     function User(firstName, lastName, about, eyeColor) {
+        /* Then we need to determine the arguments */
         this.firstName = firstName;
         this.lastName = lastName;
         this.about = about;
         this.eyeColor = eyeColor;
         let row, cell, text, colorDiv;
+        /* The next step is to declare a method,
+         which will get all the information and create a row */
         this.constructRow = function (createFirstName = true,
                                       createLastName = true,
                                       createAbout = true,
                                       createEyeColor = true) {
+            /* Starting to create elements. Nothing interesting */
             row = document.createElement('tr');
 
             /* First Name */
@@ -73,6 +81,7 @@ function showData() {
                 text = document.createElement('p');
                 text.textContent = this.eyeColor;
                 cell.appendChild(text);
+                /* Here is the pop, colored with its owner's eye color */
                 colorDiv = document.createElement('div');
                 colorDiv.style.backgroundColor = this.eyeColor;
                 colorDiv.className = 'colorDiv';
@@ -89,9 +98,12 @@ function showData() {
             return row;
         }
     }
-
+    /* Now we must create an array, contains
+     of all the People from JSON. I called it users,
+     but I think it doesn't matter */
     let users = [];
     let curUser;
+    /* Creating a user for every person from JSON */
     data.forEach(function (el) {
         curUser = new User(el.name.firstName, el.name.lastName, el.about, el.eyeColor);
         users.push(curUser);
@@ -100,7 +112,8 @@ function showData() {
         //output.appendChild(newRow);
     });
     console.log(users);
-
+    /* Now we need to create a lot of rows. For completing this task, I think it would be
+     better if I used a function, because we will be able to call it everywhere */
     function constructTable( firstName, lastName, about, eyeColor) {
         output.innerHTML = '';
         let newRow;
@@ -110,25 +123,33 @@ function showData() {
         });
     }
     constructTable();
+    /* Function from future. We can call it, because functions from all the code
+     are processed in the very beginning of it.
+     */
     rowsEl();
 
 
-    /* sorting first name */
+    /* Sorting first name */
     const firstNameSortBtn = document.getElementById('firstNameSortBtn');
     let firstNameClickOdd = false;
+    /* To sort a column you will have to press a button,
+     so I need to create an event listener on it */
     firstNameSortBtn.addEventListener('click', function() {
         for (let i = 0; i < hideBtns.length; i++) {
             hideBtns[i]. src = 'images/visible.png';
         }
-
+        /* If a button haven't been clicked odd, we give a special variable value 'true' */
         if (!firstNameClickOdd) {
             firstNameClickOdd = true;
             console.log('firstNameSortBtn - odd click');
         }
+        /* Else we give it 'false' */
         else {
             firstNameClickOdd = false;
             console.log('firstNameSortBtn - even click');
         }
+        /* Now we need to write a function, that will compare two nearby elements
+         and give back the result */
 
         function firstNameComp(curr, next) {
             console.log ('func firstNameComp is run');
@@ -152,12 +173,14 @@ function showData() {
             }
 
         }
-
+        /* I won't describe how does Array.sort method works, it is too easy and too long,
+         so I hope it won't cause problems */
         users.sort(firstNameComp);
         constructTable();
         rowsEl();
     })
 
+    /* Doing the same to other columns */
     /* Last name sort */
     const lastNameSortBtn = document.getElementById('lastNameSortBtn');
     let lastNameClickOdd = false;
@@ -290,17 +313,23 @@ function showData() {
         rowsEl();
     })
 
+    /* The next task is to create an edit form. First of all we should 'find' it */
     /* Edit form */
     const form = document.forms[0];
     let secondFormHeader = document.getElementById('secondFormHeader');
+    /* Now we need to create ELs on every row
+     (in fact the targets of the events will be cells).
+     I would like to place them in a function */
     function rowsEl() {
         const rows = output.getElementsByTagName('tr');
         const submit = document.getElementById('submit');
+        /* Now going throw all the rows and giving to each ov them an EL */
         for (let i = 0; i < rows.length; i++) {
             let curRow = rows[i];
             curRow.addEventListener('click', function () {
                 console.log('click on ' + i + ' row');
                 curRow.id = i;
+                /* Giving to form inputs the information from current User from array */
                 form.elements[0].value = users[i].firstName;
                 form.elements[0].placeholder = users[i].firstName;
                 form.elements[1].value = users[i].lastName;
@@ -310,11 +339,17 @@ function showData() {
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
                 form.parentElement.parentElement.style.display = 'flex';
+                /* Creating a tip with the number of row */
                 secondFormHeader.textContent = '(you are on ' + (i + 1) + ' row now)';
+                /* Now we need to process click on submit (save) button */
                 submit.addEventListener('click', function (evt) {
+                    /* deleting the default action */
                     evt.preventDefault();
                     console.log('submit click. changes to user ' + i);
                     console.log(curRow.id);
+                    /* for normal recursion work we must throw away users,
+                     we have already processed, so before writing information
+                     into user we have to check if we are on the right user */
                     if (i === + curRow.id) {
                         users[i].firstName = form.elements[0].value;
                         users[i].lastName = form.elements[1].value;
@@ -327,6 +362,9 @@ function showData() {
             });
         }
     }
+    /* Now we need to add EL to the second button, which send data to server.
+     Realising of sending data to server is not required in the task,
+     so I will just create  a pattern */
     let send = document.getElementById('send');
     send.addEventListener('click', function (evt) {
         evt.preventDefault();
@@ -339,24 +377,33 @@ function showData() {
         }
     })
 
+    /* The last task is to realise hiding of columns.
+     Because of arguments in my first function, it is a bit easy to complete the task */
     /* Hide buttons */
     let hideBtns = document.getElementsByClassName('hideBtn');
     let clickOddBtn0 = false, clickOddBtn1 = false,
         clickOddBtn2 = false, clickOddBtn3 = false;
+    /* We need to go throw all the hide buttons and give them ELs */
     for (let i = 0; i < hideBtns.length; i++) {
         hideBtns[i].addEventListener('click', function() {
             for (let i = 0; i < hideBtns.length; i++) {
                 hideBtns[i]. src = 'images/visible.png';
             }
             console.log('click on ' + i + ' hide button')
+            /* In the EL we will check if the button have already been clicked
+             and was it clicked odd or even */
             if (i === 0) {
                 if (!clickOddBtn0) {
-                    constructTable(false, true, true, true);
+                    /* If we need to hide a column, we just call function constructTable
+                     with one of the arguments value 'false' */
+                    constructTable(false, true,
+                        true, true);
                     hideBtns[0].src = 'images/hidden.png';
                     clickOddBtn0 = true;
                 }
                 else {
-                    constructTable(true, undefined, undefined, undefined);
+                    constructTable(true, undefined,
+                        undefined, undefined);
                     hideBtns[0].src = 'images/visible.png';
                     clickOddBtn0 = false;
                 }
@@ -369,7 +416,8 @@ function showData() {
                     clickOddBtn1 = true;
                 }
                 else {
-                    constructTable(undefined, true, undefined, undefined);
+                    constructTable(undefined, true,
+                        undefined, undefined);
                     hideBtns[1].src = 'images/visible.png';
                     clickOddBtn1 = false;
                 }
@@ -382,7 +430,8 @@ function showData() {
                     clickOddBtn2 = true;
                 }
                 else {
-                    constructTable(undefined, undefined, true, undefined);
+                    constructTable(undefined, undefined,
+                        true, undefined);
                     hideBtns[2].src = 'images/visible.png';
                     clickOddBtn2 = false;
                 }
@@ -395,7 +444,8 @@ function showData() {
                     clickOddBtn3 = true;
                 }
                 else {
-                    constructTable(undefined, undefined, undefined, true);
+                    constructTable(undefined, undefined,
+                        undefined, true);
                     hideBtns[3].src = 'images/visible.png';
                     clickOddBtn3 = false;
                 }
@@ -408,10 +458,12 @@ function showData() {
 
 
 /*..................................................*/
+/* After loading the AJAX calling function ShowData */
 ajax.addEventListener('readystatechange', function () {
     if (this.readyState === 4 && this.status === 200)
         showData();
 });
-
+/* Showing AJAX where to find and how to process file. We will do in asynchronously */
 ajax.open('GET', 'data.json', true);
+/* sending a request */
 ajax.send();

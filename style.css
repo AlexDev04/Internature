@@ -44,18 +44,20 @@ td {
 /* specific */
 
 .aboutText {
+    /* To show text in two rows I will use webkit */
     display: -webkit-box;
+    /* Number of rows */
     -webkit-line-clamp: 2;
+    /* Changing orientation */
     -webkit-box-orient: vertical;
+    /* What should css do with overflow */
     overflow: hidden;
 }
 .activeCell {
-    /* Shown cell */
+    /* Made for visual control */
 }
 .unactiveCell {
-    /* Cell, that mustn't be shown. this rule's specificity
-     is more than previous, so JS will add this class and
-     element will take its features */
+  /* Made for visual control */
 }
 .hideBtn {
     width: 20px;
@@ -181,5 +183,4 @@ label {
 }
 #secondFormHeader {
     color: white;
-
 }
