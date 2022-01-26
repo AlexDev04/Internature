@@ -13,7 +13,7 @@
     display: none;
     position: fixed;
     grid-area: form;
-    width: 30%;
+    width: 35%;
     margin-top: 5%;
     margin-left: 60%;
     text-align: center;
@@ -97,37 +97,64 @@ p {
 
 /* Main */
 #inFormDiv {
-    margin: 10px;
     padding: 10px;
+    background-color: #7395AE;
+    margin: 15px;
+    border-radius: 3px;
 }
 form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr) 0.5fr;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     grid-gap: 5px;
-    margin: 0px;
-    padding: 15px;
     background-color: #7395AE;
     border-radius: 3px;
+    width: 100%;
 }
 input {
     font-family: "Calibri Light";
+    width: 85%;
 }
 textarea {
     font-family: "Calibri Light";
+    width: 85%;
 }
 label {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: white;
 }
 
 /* Specific */
+#submitDiv {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 45%;
+    justify-content: space-around;
+    margin-top: 15px;
+}
 #submit {
     border-radius: 3px;
     border: none;
     height: 100%;
-    width: 100%;
+    width: 45%;
     background-color: #38566b;
     color: white;
+}
+#send {
+    border-radius: 3px;
+    border: none;
+    height: 100%;
+    width: 45%;
+    background-color: #2b3340;
+    color: white;
+}
+#formHeader {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

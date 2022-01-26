@@ -293,12 +293,13 @@ function showData() {
     /* Edit form */
     const form = document.forms[0];
     function rowsEl() {
-        let rows = output.getElementsByTagName('tr');
-        let submit = document.getElementById('submit');
-        let targetTd;
+        const rows = output.getElementsByTagName('tr');
+        const submit = document.getElementById('submit');
         for (let i = 0; i < rows.length; i++) {
-            rows[i].addEventListener('click', function (evt) {
-                targetTd = evt.target;
+            curRow = rows[i];
+            curRow.addEventListener('click', function () {
+                console.log('click on ' + i + ' row');
+                curRow.id = i;
                 form.elements[0].value = users[i].firstName;
                 form.elements[0].placeholder = users[i].firstName;
                 form.elements[1].value = users[i].lastName;
@@ -308,17 +309,20 @@ function showData() {
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
                 form.parentElement.parentElement.style.display = 'grid';
-                submit.addEventListener('click', function(evt) {
+                let j = i;
+                submit.addEventListener('click', function (evt) {
                     evt.preventDefault();
-                    console.log(i);
-                    console.log(users[i]);
-                    users[i].firstName = form.elements[0].value;
-                    users[i].lastName = form.elements[1].value;
-                    users[i].about = form.elements[2].value;
-                    users[i].eyeColor = form.elements[3].value;
-                    constructTable();
+                    console.log('submit click. changes to user ' + i);
+                    console.log(curRow.id);
+                    if (i === + curRow.id) {
+                        users[i].firstName = form.elements[0].value;
+                        users[i].lastName = form.elements[1].value;
+                        users[i].about = form.elements[2].value;
+                        users[i].eyeColor = form.elements[3].value;
+                        constructTable();
+                        rowsEl();
+                    }
                 })
-
             });
         }
     }
