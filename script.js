@@ -292,11 +292,12 @@ function showData() {
 
     /* Edit form */
     const form = document.forms[0];
+    let secondFormHeader = document.getElementById('secondFormHeader');
     function rowsEl() {
         const rows = output.getElementsByTagName('tr');
         const submit = document.getElementById('submit');
         for (let i = 0; i < rows.length; i++) {
-            curRow = rows[i];
+            let curRow = rows[i];
             curRow.addEventListener('click', function () {
                 console.log('click on ' + i + ' row');
                 curRow.id = i;
@@ -309,6 +310,7 @@ function showData() {
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
                 form.parentElement.parentElement.style.display = 'flex';
+                secondFormHeader.textContent = '(you are on ' + (i + 1) + ' row now)';
                 submit.addEventListener('click', function (evt) {
                     evt.preventDefault();
                     console.log('submit click. changes to user ' + i);
@@ -346,42 +348,42 @@ function showData() {
             for (let i = 0; i < hideBtns.length; i++) {
                 hideBtns[i]. src = 'images/visible.png';
             }
-
+            console.log('click on ' + i + ' hide button')
             if (i === 0) {
                 if (!clickOddBtn0) {
-                    constructTable(false);
-                    hideBtns[i].src = 'images/hidden.png';
+                    constructTable(false, true, true, true);
+                    hideBtns[0].src = 'images/hidden.png';
                     clickOddBtn0 = true;
                 }
                 else {
-                    constructTable();
-                    hideBtns[i].src = 'images/visible.png';
+                    constructTable(true, undefined, undefined, undefined);
+                    hideBtns[0].src = 'images/visible.png';
                     clickOddBtn0 = false;
                 }
                 rowsEl();
             }
             if (i === 1) {
                 if (!clickOddBtn1) {
-                    constructTable(true, false);
-                    hideBtns[i].src = 'images/hidden.png';
+                    constructTable(true, false, true, true);
+                    hideBtns[1].src = 'images/hidden.png';
                     clickOddBtn1 = true;
                 }
                 else {
-                    constructTable();
-                    hideBtns[i].src = 'images/visible.png';
+                    constructTable(undefined, true, undefined, undefined);
+                    hideBtns[1].src = 'images/visible.png';
                     clickOddBtn1 = false;
                 }
                 rowsEl();
             }
             if (i === 2) {
                 if (!clickOddBtn2) {
-                    constructTable(true, true, false);
-                    hideBtns[i].src = 'images/hidden.png';
+                    constructTable(true, true, false, true);
+                    hideBtns[2].src = 'images/hidden.png';
                     clickOddBtn2 = true;
                 }
                 else {
-                    constructTable();
-                    hideBtns[i].src = 'images/visible.png';
+                    constructTable(undefined, undefined, true, undefined);
+                    hideBtns[2].src = 'images/visible.png';
                     clickOddBtn2 = false;
                 }
                 rowsEl();
@@ -389,12 +391,12 @@ function showData() {
             else if (i === 3) {
                 if (!clickOddBtn3) {
                     constructTable(true, true, true, false);
-                    hideBtns[i].src = 'images/hidden.png';
+                    hideBtns[3].src = 'images/hidden.png';
                     clickOddBtn3 = true;
                 }
                 else {
-                    constructTable();
-                    hideBtns[i].src = 'images/visible.png';
+                    constructTable(undefined, undefined, undefined, true);
+                    hideBtns[3].src = 'images/visible.png';
                     clickOddBtn3 = false;
                 }
                 rowsEl();
