@@ -294,6 +294,7 @@ function showData() {
     const form = document.forms[0];
     function rowsEl() {
         let rows = output.getElementsByTagName('tr');
+        let submit = document.getElementById('submit');
         let targetTd;
         for (let i = 0; i < rows.length; i++) {
             rows[i].addEventListener('click', function (evt) {
@@ -306,7 +307,18 @@ function showData() {
                 form.elements[2].placeholder = users[i].about;
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
-                form.parentElement.style.display = 'grid';
+                form.parentElement.parentElement.style.display = 'grid';
+                submit.addEventListener('click', function(evt) {
+                    evt.preventDefault();
+                    console.log(i);
+                    console.log(users[i]);
+                    users[i].firstName = form.elements[0].value;
+                    users[i].lastName = form.elements[1].value;
+                    users[i].about = form.elements[2].value;
+                    users[i].eyeColor = form.elements[3].value;
+                    constructTable();
+                })
+
             });
         }
     }

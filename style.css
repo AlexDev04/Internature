@@ -17,6 +17,7 @@
     margin-top: 5%;
     margin-left: 60%;
     text-align: center;
+    background-color: #B0A295;
 }
 
 
@@ -26,9 +27,10 @@
 table {
     border-spacing: 5px;
     text-align: center;
+    border-radius: 3px;
 }
 td {
-    border: solid 1px;
+    border-radius: 3px;
 }
 
 /* specific */
@@ -59,34 +61,55 @@ p {
     height: 5px;
 }
 .firstNameCell {
+    background-color: #B2C5DB;
     width: 20%;
     cursor: pointer;
 }
 .lastNameCell {
+    background-color: #B0A295;
     width: 20%;
     cursor: pointer;
 }
 .aboutCell {
+    background-color: #B2C5DB;
     width: 40%;
     cursor: pointer;
 }
 .eyeColorCell {
+    background-color: #B0A295;
     width: 20%;
     cursor: pointer;
 }
 .eyeColorCell > p {
     display: inline;
 }
+.sortBtn {
+    background-color: #38566b;
+    color: white;
+    border-radius: 3px;
+    border: none;
+}
+.columnHead {
+    background-color: #7395AE;
+}
 
 /* FORM */
 
 /* Main */
+#inFormDiv {
+    margin: 10px;
+    padding: 10px;
+}
 form {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr) 0.5fr;
     text-align: center;
     grid-gap: 5px;
+    margin: 0px;
+    padding: 15px;
+    background-color: #7395AE;
+    border-radius: 3px;
 }
 input {
     font-family: "Calibri Light";
@@ -101,5 +124,10 @@ label {
 
 /* Specific */
 #submit {
-    width: 35%;
+    border-radius: 3px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    background-color: #38566b;
+    color: white;
 }
