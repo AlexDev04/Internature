@@ -1,3 +1,7 @@
+html {
+    font-family: "Calibri Light";
+    font-size: medium;
+}
 /*  POSITIONING */
 #content {
     display: grid;
@@ -13,10 +17,13 @@
     display: none;
     position: fixed;
     grid-area: form;
-    width: 35%;
+    width: 25%;
     margin-top: 5%;
-    margin-left: 60%;
+    margin-left: 62.5%;
+    border-radius: 3px;
     text-align: center;
+    flex-direction: column;
+    justify-content: center;
     background-color: #B0A295;
 }
 
@@ -51,6 +58,7 @@ p {
 .hideBtn {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 .colorDiv {
     display: inline-block;
@@ -88,6 +96,7 @@ p {
     color: white;
     border-radius: 3px;
     border: none;
+    cursor: pointer;
 }
 .columnHead {
     background-color: #7395AE;
@@ -99,7 +108,8 @@ p {
 #inFormDiv {
     padding: 10px;
     background-color: #7395AE;
-    margin: 15px;
+    margin: 0 15px 15px;
+
     border-radius: 3px;
 }
 form {
@@ -118,6 +128,8 @@ input {
 textarea {
     font-family: "Calibri Light";
     width: 85%;
+    max-width: 100%;
+    max-height: 200px;
 }
 label {
     display: flex;
@@ -153,8 +165,10 @@ label {
     color: white;
 }
 #formHeader {
+    font-size: large;
     color: white;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
+    margin: 30px;
 }

@@ -308,8 +308,7 @@ function showData() {
                 form.elements[2].placeholder = users[i].about;
                 form.elements[3].value = users[i].eyeColor;
                 form.elements[2].placeholder = users[i].eyeColor;
-                form.parentElement.parentElement.style.display = 'grid';
-                let j = i;
+                form.parentElement.parentElement.style.display = 'flex';
                 submit.addEventListener('click', function (evt) {
                     evt.preventDefault();
                     console.log('submit click. changes to user ' + i);
@@ -326,6 +325,17 @@ function showData() {
             });
         }
     }
+    let send = document.getElementById('send');
+    send.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        /*function of sending data to server */
+        if (window.confirm('Send data to server?')) {
+            alert('Data Sent');
+        }
+        else {
+            alert('Data send canceled');
+        }
+    })
 
     /* Hide buttons */
     let hideBtns = document.getElementsByClassName('hideBtn');
